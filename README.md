@@ -10,8 +10,3 @@
 - Radix UI (shadcn/ui)
 - pnpm (package manager)
 
-## Deployment
-
-Project is live at:
-
-
