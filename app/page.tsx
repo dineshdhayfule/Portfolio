@@ -218,7 +218,7 @@ export default function Portfolio() {
                 animate={{ opacity: 1, x: 0 }}
                 className="text-2xl font-bold text-text-primary"
               >
-                Dinesh<span className="text-primary-accent">.</span>
+                Dinesh<span className="text-primary-accent"> Dhayfule</span>
               </motion.div>
 
               {/* Desktop Navigation */}
@@ -276,10 +276,7 @@ export default function Portfolio() {
                 Aspiring Software Engineer
               </h2>
               <p className="text-lg md:text-xl text-secondary-text max-w-3xl mx-auto leading-relaxed mb-8">
-                Devoted to creating scalable digital solutions, with a focus on machine learning and backend
-                development. Currently pursuing a B.Tech in Computer Science and Engineering, aiming to contribute to a
-                progressive organization where I can apply my technical expertise, grow continuously, and build
-                impactful applications.
+                Devoted to creating scalable digital solutions, with a focus on machine learning and backend development. Currently pursuing a B.Tech in Computer Science and Engineering, aiming to contribute to a progressive organization where I can apply my technical expertise, grow continuously, and build impactful applications
               </p>
 
               {/* Career Objective */}
@@ -584,7 +581,7 @@ export default function Portfolio() {
 
                 <div className="space-y-4">
                   <a
-                    href="https://github.com"
+                    href="https://github.com/dineshdhayfule"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center space-x-3 text-secondary-text hover:text-primary-accent transition-all duration-200 ease-in-out"
@@ -593,7 +590,7 @@ export default function Portfolio() {
                     <span>GitHub Profile</span>
                   </a>
                   <a
-                    href="https://linkedin.com"
+                    href="https://www.linkedin.com/in/dinesh-dhayfule/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center space-x-3 text-secondary-text hover:text-primary-accent transition-all duration-200 ease-in-out"
@@ -602,11 +599,11 @@ export default function Portfolio() {
                     <span>LinkedIn Profile</span>
                   </a>
                   <a
-                    href="mailto:dinesh@example.com"
+                    href="mailto:dineshdhayfule@gmail.com"
                     className="flex items-center space-x-3 text-secondary-text hover:text-primary-accent transition-all duration-200 ease-in-out"
                   >
                     <Mail size={24} />
-                    <span>dinesh@example.com</span>
+                    <span>dineshdhayfule@gmail.com</span>
                   </a>
                 </div>
               </motion.div>
