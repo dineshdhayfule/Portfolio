@@ -40,7 +40,7 @@ const useTheme = () => {
 
 // Theme Provider Component
 const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<"light" | "dark">("dark")
+  const [theme, setTheme] = useState<"light" | "dark">("light") // Changed default to "light"
 
   useEffect(() => {
     // Check localStorage for saved theme preference
@@ -48,9 +48,8 @@ const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) =>
     if (savedTheme) {
       setTheme(savedTheme)
     } else {
-      // Check system preference
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
-      setTheme(prefersDark ? "dark" : "light")
+      // Default to light theme if no preference is saved
+      setTheme("light")
     }
   }, [])
 
@@ -74,7 +73,7 @@ const ThemeToggle: React.FC = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="theme-toggle p-2 rounded-lg bg-surface hover:bg-surface-hover border border-border"
+      className="theme-toggle p-2 rounded-lg bg-surface hover:bg-surface-hover border border-border shadow-subtle"
       aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
     >
       {theme === "light" ? (
@@ -209,9 +208,9 @@ export default function Portfolio() {
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-background font-['Roboto',sans-serif]">
+      <div className="min-h-screen bg-background font-['IBM_Plex_Sans',sans-serif]">
         {/* Navigation */}
-        <nav className="fixed top-0 w-full bg-surface/95 backdrop-blur-sm z-50 border-b border-border shadow-sm">
+        <nav className="fixed top-0 w-full bg-surface/95 backdrop-blur-sm z-50 border-b border-border shadow-professional">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-4">
               <motion.div
@@ -219,7 +218,7 @@ export default function Portfolio() {
                 animate={{ opacity: 1, x: 0 }}
                 className="text-2xl font-bold text-text-primary"
               >
-                Dinesh<span className="text-accent-blue">.</span>
+                Dinesh<span className="text-primary-accent">.</span>
               </motion.div>
 
               {/* Desktop Navigation */}
@@ -228,7 +227,7 @@ export default function Portfolio() {
                   <button
                     key={item}
                     onClick={() => scrollToSection(item.toLowerCase())}
-                    className="text-text-secondary hover:text-accent-blue transition-all duration-300 ease-in-out font-medium"
+                    className="text-text-secondary hover:text-primary-accent transition-all duration-200 ease-in-out font-medium"
                   >
                     {item}
                   </button>
@@ -256,7 +255,7 @@ export default function Portfolio() {
                   <button
                     key={item}
                     onClick={() => scrollToSection(item.toLowerCase())}
-                    className="block w-full text-left py-2 text-text-secondary hover:text-accent-blue transition-all duration-300 ease-in-out"
+                    className="block w-full text-left py-2 text-text-secondary hover:text-primary-accent transition-all duration-200 ease-in-out"
                   >
                     {item}
                   </button>
@@ -270,32 +269,37 @@ export default function Portfolio() {
         <section id="about" className="min-h-screen flex items-center justify-center px-4 pt-20">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-              <h1 className="text-5xl md:text-7xl font-bold text-text-primary mb-6">
-                Hi, I'm <span className="text-accent-blue">Dinesh Dhayfule</span>
+              <h1 className="text-5xl md:text-7xl font-bold text-primary-text mb-6">
+                Hi, I'm <span className="text-primary-accent">Dinesh Dhayfule</span>
               </h1>
-              <h2 className="text-2xl md:text-3xl text-accent-green mb-8 font-medium">Aspiring Software Engineer</h2>
-              <p className="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
-                Passionate about backend development, machine learning, and building scalable digital solutions.
-                Currently pursuing B.Tech in CSE and constantly learning new technologies to create impactful
-                applications.
+              <h2 className="text-2xl md:text-3xl text-secondary-accent mb-8 font-medium">
+                Aspiring Software Engineer
+              </h2>
+              <p className="text-lg md:text-xl text-secondary-text max-w-3xl mx-auto leading-relaxed mb-8">
+                Devoted to creating scalable digital solutions, with a focus on machine learning and backend
+                development. Currently pursuing a B.Tech in Computer Science and Engineering, aiming to contribute to a
+                progressive organization where I can apply my technical expertise, grow continuously, and build
+                impactful applications.
               </p>
+
+              {/* Career Objective */}
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
               className="mt-12 flex flex-col sm:flex-row gap-4 justify-center"
             >
               <button
                 onClick={() => scrollToSection("projects")}
-                className="bg-accent-blue hover:opacity-90 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                className="bg-primary-accent hover:opacity-90 text-button-text px-8 py-3 rounded-lg font-medium transition-all duration-200 ease-in-out shadow-professional hover:shadow-elevated transform hover:-translate-y-1"
               >
                 View My Work
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
-                className="border-2 border-accent-blue text-accent-blue hover:bg-accent-blue hover:text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                className="border-2 border-primary-accent text-primary-accent hover:bg-primary-accent hover:text-button-text px-8 py-3 rounded-lg font-medium transition-all duration-200 ease-in-out shadow-professional hover:shadow-elevated transform hover:-translate-y-1"
               >
                 Get In Touch
               </button>
@@ -307,7 +311,7 @@ export default function Portfolio() {
               transition={{ duration: 1, delay: 1 }}
               className="mt-16"
             >
-              <ChevronDown className="mx-auto text-accent-blue animate-bounce" size={32} />
+              <ChevronDown className="mx-auto text-primary-accent animate-bounce" size={32} />
             </motion.div>
           </div>
         </section>
@@ -322,8 +326,8 @@ export default function Portfolio() {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-accent-blue mb-6">Skills</h2>
-              <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+              <h2 className="text-4xl md:text-5xl font-bold text-primary-accent mb-6">Skills</h2>
+              <p className="text-secondary-text text-lg max-w-2xl mx-auto">
                 A comprehensive toolkit of programming languages, frameworks, and technologies I work with
               </p>
             </motion.div>
@@ -336,11 +340,11 @@ export default function Portfolio() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: categoryIndex * 0.1 }}
                   viewport={{ once: true }}
-                  className="bg-surface rounded-xl p-6 shadow-lg border border-border hover:shadow-xl transition-all duration-300 ease-in-out"
+                  className="bg-surface-bg rounded-xl p-6 shadow-professional border border-divider hover:shadow-elevated transition-all duration-200 ease-in-out"
                 >
                   <div className="flex items-center mb-4">
-                    <category.icon className="text-accent-blue mr-3" size={24} />
-                    <h3 className="text-xl font-bold text-text-primary">{category.title}</h3>
+                    <category.icon className="text-primary-accent mr-3" size={24} />
+                    <h3 className="text-xl font-bold text-primary-text">{category.title}</h3>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {category.skills.map((skill, skillIndex) => (
@@ -350,7 +354,7 @@ export default function Portfolio() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.3, delay: skillIndex * 0.05 }}
                         viewport={{ once: true }}
-                        className="bg-surface hover:bg-surface-hover text-text-primary px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-300 ease-in-out cursor-default shadow-sm border border-border"
+                        className="bg-button-bg hover:bg-button-hover text-button-text px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 ease-in-out cursor-default shadow-subtle border border-divider"
                       >
                         {skill}
                       </motion.span>
@@ -372,8 +376,8 @@ export default function Portfolio() {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-accent-blue mb-6">Featured Projects</h2>
-              <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+              <h2 className="text-4xl md:text-5xl font-bold text-primary-accent mb-6">Featured Projects</h2>
+              <p className="text-secondary-text text-lg max-w-2xl mx-auto">
                 A showcase of my development work spanning mobile apps, web applications, and AI/ML projects
               </p>
             </motion.div>
@@ -387,18 +391,18 @@ export default function Portfolio() {
                   transition={{ duration: 0.8, delay: index * 0.1 }}
                   viewport={{ once: true }}
                   whileHover={{ y: -5 }}
-                  className="bg-surface rounded-xl p-6 shadow-lg border border-border hover:shadow-xl transition-all duration-300 ease-in-out"
+                  className="bg-surface-bg rounded-xl p-6 shadow-professional border border-divider hover:shadow-elevated transition-all duration-200 ease-in-out"
                 >
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-xl font-bold text-text-primary">{project.title}</h3>
-                    <ExternalLink className="text-accent-blue" size={20} />
+                    <h3 className="text-xl font-bold text-primary-text">{project.title}</h3>
+                    <ExternalLink className="text-primary-accent" size={20} />
                   </div>
-                  <p className="text-text-secondary mb-4 leading-relaxed">{project.description}</p>
+                  <p className="text-secondary-text mb-4 leading-relaxed">{project.description}</p>
                   <div className="flex flex-wrap gap-2">
                     {project.tech.map((tech) => (
                       <span
                         key={tech}
-                        className="bg-accent-blue/10 text-accent-blue px-3 py-1 rounded-lg text-sm font-medium border border-accent-blue/20"
+                        className="bg-primary-accent/10 text-primary-accent px-3 py-1 rounded-lg text-sm font-medium border border-primary-accent/20"
                       >
                         {tech}
                       </span>
@@ -420,8 +424,8 @@ export default function Portfolio() {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-accent-blue mb-6">Education</h2>
-              <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+              <h2 className="text-4xl md:text-5xl font-bold text-primary-accent mb-6">Education</h2>
+              <p className="text-secondary-text text-lg max-w-2xl mx-auto">
                 My academic journey in computer science and technology
               </p>
             </motion.div>
@@ -434,22 +438,22 @@ export default function Portfolio() {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: index * 0.2 }}
                   viewport={{ once: true }}
-                  className="bg-surface rounded-xl p-6 shadow-lg border border-border hover:shadow-xl transition-all duration-300 ease-in-out"
+                  className="bg-surface-bg rounded-xl p-6 shadow-professional border border-divider hover:shadow-elevated transition-all duration-200 ease-in-out"
                 >
                   <div className="flex flex-col md:flex-row md:items-center justify-between mb-2">
-                    <h3 className="text-xl font-bold text-text-primary">{edu.degree}</h3>
+                    <h3 className="text-xl font-bold text-primary-text">{edu.degree}</h3>
                     <span
                       className={`px-3 py-1 rounded-lg text-sm font-medium ${
                         edu.status === "Pursuing"
-                          ? "bg-accent-green/10 text-accent-green border border-accent-green/20"
-                          : "bg-accent-blue/10 text-accent-blue border border-accent-blue/20"
+                          ? "bg-secondary-accent/10 text-secondary-accent border border-secondary-accent/20"
+                          : "bg-primary-accent/10 text-primary-accent border border-primary-accent/20"
                       }`}
                     >
                       {edu.status}
                     </span>
                   </div>
-                  <p className="text-accent-blue font-medium mb-1">{edu.institution}</p>
-                  <p className="text-text-secondary">{edu.period}</p>
+                  <p className="text-primary-accent font-medium mb-1">{edu.institution}</p>
+                  <p className="text-secondary-text">{edu.period}</p>
                 </motion.div>
               ))}
             </div>
@@ -462,7 +466,7 @@ export default function Portfolio() {
               viewport={{ once: true }}
               className="mt-20"
             >
-              <h3 className="text-3xl font-bold text-accent-blue mb-8 text-center">Courses & Certifications</h3>
+              <h3 className="text-3xl font-bold text-primary-accent mb-8 text-center">Courses & Certifications</h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {certifications.map((cert, index) => (
                   <motion.div
@@ -471,14 +475,14 @@ export default function Portfolio() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="bg-surface rounded-xl p-6 shadow-lg border border-border hover:shadow-xl transition-all duration-300 ease-in-out"
+                    className="bg-surface-bg rounded-xl p-6 shadow-professional border border-divider hover:shadow-elevated transition-all duration-200 ease-in-out"
                   >
                     <div className="flex items-center mb-3">
-                      <Award className="text-accent-yellow mr-2" size={20} />
-                      <h4 className="text-lg font-bold text-text-primary">{cert.title}</h4>
+                      <Award className="text-secondary-accent mr-2" size={20} />
+                      <h4 className="text-lg font-bold text-primary-text">{cert.title}</h4>
                     </div>
-                    <p className="text-accent-blue font-medium mb-2">{cert.provider}</p>
-                    <p className="text-text-secondary text-sm">{cert.description}</p>
+                    <p className="text-primary-accent font-medium mb-2">{cert.provider}</p>
+                    <p className="text-secondary-text text-sm">{cert.description}</p>
                   </motion.div>
                 ))}
               </div>
@@ -496,8 +500,8 @@ export default function Portfolio() {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-accent-blue mb-6">Get In Touch</h2>
-              <p className="text-text-secondary text-lg max-w-2xl mx-auto">
+              <h2 className="text-4xl md:text-5xl font-bold text-primary-accent mb-6">Get In Touch</h2>
+              <p className="text-secondary-text text-lg max-w-2xl mx-auto">
                 I'm always open to discussing new opportunities, collaborations, or just having a chat about technology
               </p>
             </motion.div>
@@ -512,7 +516,7 @@ export default function Portfolio() {
               >
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label htmlFor="name" className="block text-text-primary font-medium mb-2">
+                    <label htmlFor="name" className="block text-primary-text font-medium mb-2">
                       Name
                     </label>
                     <input
@@ -521,12 +525,12 @@ export default function Portfolio() {
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full bg-surface border border-border rounded-xl px-4 py-3 text-text-primary focus:border-accent-blue focus:outline-none transition-all duration-300 ease-in-out shadow-sm"
+                      className="w-full bg-surface-bg border border-divider rounded-xl px-4 py-3 text-primary-text focus:border-primary-accent focus:outline-none transition-all duration-200 ease-in-out shadow-subtle"
                       placeholder="Your name"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-text-primary font-medium mb-2">
+                    <label htmlFor="email" className="block text-primary-text font-medium mb-2">
                       Email
                     </label>
                     <input
@@ -535,12 +539,12 @@ export default function Portfolio() {
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-surface border border-border rounded-xl px-4 py-3 text-text-primary focus:border-accent-blue focus:outline-none transition-all duration-300 ease-in-out shadow-sm"
+                      className="w-full bg-surface-bg border border-divider rounded-xl px-4 py-3 text-primary-text focus:border-primary-accent focus:outline-none transition-all duration-200 ease-in-out shadow-subtle"
                       placeholder="your.email@example.com"
                     />
                   </div>
                   <div>
-                    <label htmlFor="message" className="block text-text-primary font-medium mb-2">
+                    <label htmlFor="message" className="block text-primary-text font-medium mb-2">
                       Message
                     </label>
                     <textarea
@@ -549,13 +553,13 @@ export default function Portfolio() {
                       rows={5}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full bg-surface border border-border rounded-xl px-4 py-3 text-text-primary focus:border-accent-blue focus:outline-none transition-all duration-300 ease-in-out resize-none shadow-sm"
+                      className="w-full bg-surface-bg border border-divider rounded-xl px-4 py-3 text-primary-text focus:border-primary-accent focus:outline-none transition-all duration-200 ease-in-out resize-none shadow-subtle"
                       placeholder="Your message..."
                     />
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-accent-blue hover:opacity-90 text-white py-3 rounded-xl font-medium transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                    className="w-full bg-button-bg hover:bg-button-hover text-button-text py-3 rounded-xl font-medium transition-all duration-200 ease-in-out shadow-professional hover:shadow-elevated transform hover:-translate-y-1"
                   >
                     Send Message
                   </button>
@@ -571,8 +575,8 @@ export default function Portfolio() {
                 className="space-y-8"
               >
                 <div>
-                  <h3 className="text-2xl font-bold text-text-primary mb-6">Let's Connect</h3>
-                  <p className="text-text-secondary leading-relaxed">
+                  <h3 className="text-2xl font-bold text-primary-text mb-6">Let's Connect</h3>
+                  <p className="text-secondary-text leading-relaxed">
                     I'm currently looking for new opportunities and interesting projects. Whether you have a question or
                     just want to say hi, I'll try my best to get back to you!
                   </p>
@@ -583,7 +587,7 @@ export default function Portfolio() {
                     href="https://github.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center space-x-3 text-text-secondary hover:text-accent-blue transition-all duration-300 ease-in-out"
+                    className="flex items-center space-x-3 text-secondary-text hover:text-primary-accent transition-all duration-200 ease-in-out"
                   >
                     <Github size={24} />
                     <span>GitHub Profile</span>
@@ -592,14 +596,14 @@ export default function Portfolio() {
                     href="https://linkedin.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center space-x-3 text-text-secondary hover:text-accent-blue transition-all duration-300 ease-in-out"
+                    className="flex items-center space-x-3 text-secondary-text hover:text-primary-accent transition-all duration-200 ease-in-out"
                   >
                     <Linkedin size={24} />
                     <span>LinkedIn Profile</span>
                   </a>
                   <a
                     href="mailto:dinesh@example.com"
-                    className="flex items-center space-x-3 text-text-secondary hover:text-accent-blue transition-all duration-300 ease-in-out"
+                    className="flex items-center space-x-3 text-secondary-text hover:text-primary-accent transition-all duration-200 ease-in-out"
                   >
                     <Mail size={24} />
                     <span>dinesh@example.com</span>
@@ -611,9 +615,9 @@ export default function Portfolio() {
         </section>
 
         {/* Footer */}
-        <footer className="py-8 px-4 border-t border-border">
+        <footer className="py-8 px-4 border-t border-divider">
           <div className="max-w-6xl mx-auto text-center">
-            <p className="text-text-secondary">© 2024 Dinesh Dhayfule. Built with React & Tailwind CSS.</p>
+            <p className="text-secondary-text">© 2024 Dinesh Dhayfule. Built with React & Tailwind CSS.</p>
           </div>
         </footer>
       </div>

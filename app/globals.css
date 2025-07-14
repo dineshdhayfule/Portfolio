@@ -10,39 +10,49 @@
   --bg-surface-hover: #e8eaed;
   --text-primary: #202124;
   --text-secondary: #5f6368;
+  --text-disabled: #a0aec0; /* New disabled text for light mode */
   --border-color: #dadce0;
   --accent-blue: #4285f4;
   --accent-red: #ea4335;
   --accent-yellow: #fbbc04;
   --accent-green: #34a853;
+  --accent-cyan: #4fc3f7; /* New subtle highlight for light mode */
+  --button-bg: #455a64; /* Default button bg for light mode */
+  --button-hover: #546e7a; /* Default button hover for light mode */
+  --button-text: #eceff1; /* Default button text for light mode */
 }
 
 /* CSS Variables for Dark Mode */
 .dark {
-  --bg-background: #121212;
-  --bg-background-secondary: #202124;
-  --bg-surface: #1f1f1f;
-  --bg-surface-hover: #3c4043;
-  --text-primary: #e8eaed;
-  --text-secondary: #9aa0a6;
-  --border-color: #5f6368;
-  --accent-blue: #8ab4f8;
-  --accent-red: #f28b82;
-  --accent-yellow: #fdd663;
-  --accent-green: #81c995;
+  --bg-background: #121212; /* Reverted to previous black background */
+  --bg-background-secondary: #202124; /* Reverted to previous secondary background */
+  --bg-surface: #1f1f1f; /* Reverted to previous surface */
+  --bg-surface-hover: #3c4043; /* Reverted to previous surface hover */
+  --text-primary: #e8eaed; /* Reverted to previous primary text */
+  --text-secondary: #9aa0a6; /* Reverted to previous secondary text */
+  --text-disabled: #6c7a89; /* New disabled text for dark mode */
+  --border-color: #5f6368; /* Reverted to previous border */
+  --accent-blue: #8ab4f8; /* Reverted to previous accent blue */
+  --accent-red: #f28b82; /* Reverted to previous accent red */
+  --accent-yellow: #fdd663; /* Reverted to previous accent yellow */
+  --accent-green: #81c995; /* Reverted to previous accent green */
+  --accent-cyan: #4fc3f7; /* Keeping this subtle highlight */
+  --button-bg: #4a5568; /* Reverted to previous button bg */
+  --button-hover: #5c6b7e; /* Reverted to previous button hover */
+  --button-text: #ffffff; /* Reverted to previous button text */
 }
 
 /* Global transitions for smooth theme switching */
 * {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
 
-/* Roboto font import */
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+/* IBM Plex Sans font import */
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap");
 
 /* Base styles */
 body {
-  font-family: "Roboto", system-ui, sans-serif;
+  font-family: "IBM Plex Sans", "Fira Sans", "Open Sans", system-ui, sans-serif;
   background-color: var(--bg-background);
   color: var(--text-primary);
 }
@@ -76,7 +86,7 @@ textarea:focus-visible {
 /* Animation for theme toggle button */
 .theme-toggle {
   transform: scale(1);
-  transition: transform 0.2s ease, background-color 0.3s ease;
+  transition: transform 0.2s ease, background-color 0.2s ease-in-out;
 }
 
 .theme-toggle:hover {
@@ -85,6 +95,19 @@ textarea:focus-visible {
 
 .theme-toggle:active {
   transform: scale(0.95);
+}
+
+/* Professional shadow system */
+.shadow-subtle {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.shadow-professional {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.shadow-elevated {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 /* ------------------------------------------------------------------ */
@@ -110,6 +133,9 @@ textarea:focus-visible {
   .text-text-secondary {
     color: var(--text-secondary);
   }
+  .text-text-disabled {
+    color: var(--text-disabled);
+  }
 
   .border-border {
     border-color: var(--border-color);
@@ -127,6 +153,9 @@ textarea:focus-visible {
   .text-accent-green {
     color: var(--accent-green);
   }
+  .text-accent-cyan {
+    color: var(--accent-cyan);
+  }
 
   .bg-accent-blue {
     background-color: var(--accent-blue);
@@ -139,5 +168,18 @@ textarea:focus-visible {
   }
   .bg-accent-green {
     background-color: var(--accent-green);
+  }
+  .bg-accent-cyan {
+    background-color: var(--accent-cyan);
+  }
+
+  .bg-button-bg {
+    background-color: var(--button-bg);
+  }
+  .hover\:bg-button-hover:hover {
+    background-color: var(--button-hover);
+  }
+  .text-button-text {
+    color: var(--button-text);
   }
 }
