@@ -230,8 +230,8 @@ export default function Portfolio() {
     <ThemeProvider>
       <div className="min-h-screen bg-background font-['Inter',sans-serif]">
         {/* Navigation */}
-        <nav className="fixed top-0 w-full bg-surface/95 backdrop-blur-sm z-50 border-b border-border shadow-professional">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav className="fixed top-0 w-full bg-surface/95 backdrop-blur-sm z-50 border-b border-border shadow-professional relative overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="flex justify-between items-center py-4">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -286,8 +286,11 @@ export default function Portfolio() {
         </nav>
 
         {/* Hero Section */}
-        <section id="about" className="min-h-screen flex items-center justify-center px-4 pt-20">
-          <div className="max-w-4xl mx-auto text-center">
+        <section
+          id="about"
+          className="min-h-screen flex items-center justify-center px-4 pt-20 relative overflow-hidden"
+        >
+          <div className="max-w-4xl mx-auto text-center relative z-10">
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
               <h1 className="text-5xl md:text-7xl font-bold text-primary-text mb-6">
                 Hi, I'm <span className="text-text-primary font-light">Dinesh Dhayfule</span>

@@ -24,9 +24,9 @@
 
 /* CSS Variables for Dark Mode (now "Dark Web Show" aesthetic) */
 .dark {
-  --bg-background: #0a0f17; /* dominant page background */
-  --bg-background-secondary: #141a25; /* all cards / main sections */
-  --bg-surface: #141a25; /* all cards / main sections */
+  --bg-background: hsl(0 0% 0%); /* pure black */
+  --bg-background-secondary: hsl(0 0% 0%); /* all cards / main sections */
+  --bg-surface: hsl(0 0% 0%); /* all cards / main sections */
   --bg-surface-hover: #1e2638; /* rare overlays / modals */
   --text-primary: #e0f5ff; /* main body & heading text */
   --text-secondary: #9ec0d8; /* sub-text, captions */
@@ -60,6 +60,7 @@ body {
   background-color: var(--bg-background);
   color: var(--text-primary);
   line-height: 1.6; /* Generous line-height for readability */
+  cursor: url("/cursors/custom-cursor.png") 8 8, auto;
 }
 
 /* Apply Space Mono or Inter bold to headings in dark theme */
