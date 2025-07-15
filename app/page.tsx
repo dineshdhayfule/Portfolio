@@ -3,7 +3,6 @@
 import type React from "react"
 import { useState, createContext, useContext, useEffect } from "react"
 import { motion } from "framer-motion"
-import { useActionState } from "react" // Import useActionState
 import {
   Award,
   Mail,
@@ -21,7 +20,6 @@ import {
   Sun,
   Moon,
 } from "lucide-react"
-import { sendContactForm } from "./actions" // Import the Server Action
 
 // Theme Context
 interface ThemeContextType {
@@ -97,15 +95,6 @@ const ThemeToggle: React.FC = () => {
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  // Use useActionState for form submission
-  const [state, formAction, isPending] = useActionState(sendContactForm, null)
-
-  // Reset form data after successful submission
-  useEffect(() => {
-    if (state?.success) {
-      setFormData({ name: "", email: "", message: "" })
-    }
-  }, [state])
 
   const [formData, setFormData] = useState({
     name: "",
@@ -113,10 +102,11 @@ export default function Portfolio() {
     message: "",
   })
 
-  // Update formData state for controlled inputs
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    console.log("Form submitted:", formData)
+    alert("Thank you for your message! I'll get back to you soon.")
+    setFormData({ name: "", email: "", message: "" })
   }
 
   const skillCategories = [
@@ -575,7 +565,7 @@ export default function Portfolio() {
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
               >
-                <form action={formAction} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-primary-text font-medium mb-2">
                       Name
@@ -586,11 +576,10 @@ export default function Portfolio() {
                       name="name" // Add name attribute
                       required
                       value={formData.name}
-                      onChange={handleInputChange}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full bg-surface-bg border border-divider rounded-xl px-4 py-3 text-primary-text focus:border-primary-accent focus:outline-none transition-all duration-200 ease-in-out shadow-subtle"
                       placeholder="Your name"
                     />
-                    {state?.errors?.name && <p className="text-destructive text-sm mt-1">{state.errors.name}</p>}
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-primary-text font-medium mb-2">
@@ -602,11 +591,10 @@ export default function Portfolio() {
                       name="email" // Add name attribute
                       required
                       value={formData.email}
-                      onChange={handleInputChange}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full bg-surface-bg border border-divider rounded-xl px-4 py-3 text-primary-text focus:border-primary-accent focus:outline-none transition-all duration-200 ease-in-out shadow-subtle"
                       placeholder="your.email@example.com"
                     />
-                    {state?.errors?.email && <p className="text-destructive text-sm mt-1">{state.errors.email}</p>}
                   </div>
                   <div>
                     <label htmlFor="message" className="block text-primary-text font-medium mb-2">
@@ -618,24 +606,17 @@ export default function Portfolio() {
                       required
                       rows={5}
                       value={formData.message}
-                      onChange={handleInputChange}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className="w-full bg-surface-bg border border-divider rounded-xl px-4 py-3 text-primary-text focus:border-primary-accent focus:outline-none transition-all duration-200 ease-in-out resize-none shadow-subtle"
                       placeholder="Your message..."
                     />
-                    {state?.errors?.message && <p className="text-destructive text-sm mt-1">{state.errors.message}</p>}
                   </div>
                   <button
                     type="submit"
-                    disabled={isPending}
-                    className="w-full bg-button-bg hover:bg-button-hover text-button-text py-3 rounded-xl font-medium transition-all duration-200 ease-in-out shadow-professional hover:shadow-elevated transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-button-bg hover:bg-button-hover text-button-text py-3 rounded-xl font-medium transition-all duration-200 ease-in-out shadow-professional hover:shadow-elevated transform hover:-translate-y-1"
                   >
-                    {isPending ? "Sending..." : "Send Message"}
+                    Send Message
                   </button>
-                  {state?.message && (
-                    <p className={`mt-4 text-center ${state.success ? "text-secondary-accent" : "text-destructive"}`}>
-                      {state.message}
-                    </p>
-                  )}
                 </form>
               </motion.div>
 
