@@ -154,14 +154,7 @@ export default function Portfolio() {
       github: "https://github.com/dineshdhayfule",
       live: "https://github.com/dineshdhayfule",
     },
-    {
-      title: "ML-Based Legal Document Analysis",
-      description:
-        "AI-powered system for legal document classification and information extraction using machine learning algorithms.",
-      tech: ["Python", "Machine Learning", "NLP"],
-      github: "https://github.com/dineshdhayfule",
-      live: "https://github.com/dineshdhayfule",
-    },
+    
     {
       title: "Health Bites",
       description:
@@ -395,9 +388,9 @@ export default function Portfolio() {
               className="text-center mb-16"
             >
               <h2 className="text-4xl md:text-5xl font-bold text-primary-accent mb-6">Featured Projects</h2>
-              <p className="text-secondary-text text-lg max-w-2xl mx-auto">
+              {/* <p className="text-secondary-text text-lg max-w-2xl mx-auto">
                 A showcase of my development work spanning mobile apps, web applications, and AI/ML projects
-              </p>
+              </p> */}
             </motion.div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
