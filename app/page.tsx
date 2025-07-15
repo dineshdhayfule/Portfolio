@@ -129,6 +129,14 @@ export default function Portfolio() {
       tech: ["Android", "Firebase", "Java"],
     },
     {
+      title: "Prediction-of-Disease",
+      description:
+        "Machine learning models for early detection of Diabetes, Heart Disease, and Parkinson's Disease using classification algorithms trained on public datasets.",
+      tech: ["Python", "Scikit-learn", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Pickle"]
+    }
+
+    ,
+    {
       title: "QuizKwik",
       description:
         "Interactive online quiz system featuring timer functionality, automatic scoring, and user progress tracking.",
