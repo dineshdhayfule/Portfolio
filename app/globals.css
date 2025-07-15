@@ -10,54 +10,70 @@
   --bg-surface-hover: #e8eaed;
   --text-primary: #202124;
   --text-secondary: #5f6368;
-  --text-disabled: #a0aec0; /* New disabled text for light mode */
+  --text-disabled: #a0aec0;
   --border-color: #dadce0;
   --accent-blue: #4285f4;
   --accent-red: #ea4335;
   --accent-yellow: #fbbc04;
   --accent-green: #34a853;
-  --accent-cyan: #4fc3f7; /* New subtle highlight for light mode */
-  --button-bg: #455a64; /* Default button bg for light mode */
-  --button-hover: #546e7a; /* Default button hover for light mode */
-  --button-text: #eceff1; /* Default button text for light mode */
+  --accent-cyan: #4fc3f7;
+  --button-bg: #455a64;
+  --button-hover: #546e7a;
+  --button-text: #eceff1;
 }
 
-/* CSS Variables for Dark Mode */
+/* CSS Variables for Dark Mode (now "Dark Web Show" aesthetic) */
 .dark {
-  --bg-background: #121212; /* Reverted to previous black background */
-  --bg-background-secondary: #202124; /* Reverted to previous secondary background */
-  --bg-surface: #1f1f1f; /* Reverted to previous surface */
-  --bg-surface-hover: #3c4043; /* Reverted to previous surface hover */
-  --text-primary: #e8eaed; /* Reverted to previous primary text */
-  --text-secondary: #9aa0a6; /* Reverted to previous secondary text */
-  --text-disabled: #6c7a89; /* New disabled text for dark mode */
-  --border-color: #5f6368; /* Reverted to previous border */
-  --accent-blue: #8ab4f8; /* Reverted to previous accent blue */
-  --accent-red: #f28b82; /* Reverted to previous accent red */
-  --accent-yellow: #fdd663; /* Reverted to previous accent yellow */
-  --accent-green: #81c995; /* Reverted to previous accent green */
-  --accent-cyan: #4fc3f7; /* Keeping this subtle highlight */
-  --button-bg: #4a5568; /* Reverted to previous button bg */
-  --button-hover: #5c6b7e; /* Reverted to previous button hover */
-  --button-text: #ffffff; /* Reverted to previous button text */
+  --bg-background: #0a0f17; /* dominant page background */
+  --bg-background-secondary: #141a25; /* all cards / main sections */
+  --bg-surface: #141a25; /* all cards / main sections */
+  --bg-surface-hover: #1e2638; /* rare overlays / modals */
+  --text-primary: #e0f5ff; /* main body & heading text */
+  --text-secondary: #9ec0d8; /* sub-text, captions */
+  --text-disabled: #5a7790; /* placeholders, tertiary info */
+  --border-color: #3a4b60; /* horizontal rules / thin borders */
+  --accent-blue: #00c2ff; /* electric cyan (primary accent) */
+  --accent-red: #ea4335; /* Keeping existing red for consistency if needed */
+  --accent-yellow: #fbbc04; /* Keeping existing yellow for consistency if needed */
+  --accent-green: #76ee00; /* muted neon green (secondary accent) */
+  --accent-cyan: #4fc3f7; /* lighter cyan for hover/focus states (interactive accent) */
+  --button-bg: #202f40; /* Button Background (Filled) */
+  --button-hover: #1e2638; /* Button Hover (using surface-secondary for depth) */
+  --button-text: #e0f5ff; /* Filled Button Text: Primary Text Color */
 }
 
 /* Global transitions for smooth theme switching */
 * {
-  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  transition:
+    background-color 0.3s ease-out, color 0.3s ease-out, border-color 0.3s ease-out, box-shadow 0.3s ease-out, text-shadow 0.3s ease-out, transform 0.3s ease-out;
 }
 
-/* IBM Plex Sans font import */
+/* Font imports */
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap");
 
 /* Base styles */
 body {
-  font-family: "IBM Plex Sans", "Fira Sans", "Open Sans", system-ui, sans-serif;
+  font-family: "Inter", "IBM Plex Sans", "Fira Sans", "Open Sans", system-ui, sans-serif;
   background-color: var(--bg-background);
   color: var(--text-primary);
+  line-height: 1.6; /* Generous line-height for readability */
 }
 
-/* Custom scrollbar for both themes */
+/* Apply Space Mono or Inter bold to headings in dark theme */
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  font-family: "Space Mono", "Inter", monospace; /* Prioritize Space Mono, fallback to Inter */
+  font-weight: 700; /* Ensure bold for Inter if Space Mono isn't used */
+}
+
+/* Custom scrollbar for all themes */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -78,8 +94,9 @@ body {
 /* Focus styles for accessibility */
 button:focus-visible,
 input:focus-visible,
-textarea:focus-visible {
-  outline: 2px solid var(--accent-blue);
+textarea:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--accent-cyan); /* Subtle Interactive Highlight for focus rings */
   outline-offset: 2px;
 }
 
@@ -108,6 +125,27 @@ textarea:focus-visible {
 
 .shadow-elevated {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Dark theme specific glow effects */
+.dark .text-primary-accent-glow {
+  text-shadow: 0 0 6px var(--accent-blue), 0 0 12px var(--accent-blue);
+}
+
+.dark .bg-primary-accent-glow {
+  box-shadow: 0 0 8px rgba(0, 194, 255, 0.15);
+}
+
+.dark .border-primary-accent-glow {
+  box-shadow: 0 0 8px rgba(0, 194, 255, 0.15);
+}
+
+.dark .hover\:bg-primary-accent-glow:hover {
+  box-shadow: 0 0 12px var(--accent-cyan); /* Use accent-hover for stronger glow on hover */
+}
+
+.dark .hover\:border-primary-accent-glow:hover {
+  box-shadow: 0 0 12px var(--accent-cyan); /* Use accent-hover for stronger glow on hover */
 }
 
 /* ------------------------------------------------------------------ */
@@ -141,35 +179,23 @@ textarea:focus-visible {
     border-color: var(--border-color);
   }
 
-  .text-accent-blue {
+  .text-primary-accent {
     color: var(--accent-blue);
   }
-  .text-accent-red {
-    color: var(--accent-red);
-  }
-  .text-accent-yellow {
-    color: var(--accent-yellow);
-  }
-  .text-accent-green {
+  .text-secondary-accent {
     color: var(--accent-green);
   }
-  .text-accent-cyan {
+  .text-accent-hover {
     color: var(--accent-cyan);
   }
 
-  .bg-accent-blue {
+  .bg-primary-accent {
     background-color: var(--accent-blue);
   }
-  .bg-accent-red {
-    background-color: var(--accent-red);
-  }
-  .bg-accent-yellow {
-    background-color: var(--accent-yellow);
-  }
-  .bg-accent-green {
+  .bg-secondary-accent {
     background-color: var(--accent-green);
   }
-  .bg-accent-cyan {
+  .bg-accent-hover {
     background-color: var(--accent-cyan);
   }
 
@@ -181,5 +207,15 @@ textarea:focus-visible {
   }
   .text-button-text {
     color: var(--button-text);
+  }
+
+  .border-primary-accent {
+    border-color: var(--accent-blue);
+  }
+  .border-secondary-accent {
+    border-color: var(--accent-green);
+  }
+  .border-divider {
+    border-color: var(--border-color);
   }
 }

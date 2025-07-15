@@ -2,12 +2,13 @@ import type { Config } from "tailwindcss"
 import animate from "tailwindcss-animate"
 
 const config: Config = {
-  darkMode: ["class"],
+  darkMode: ["class"], // Reverted darkMode to only "class"
   content: ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}", "*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
       fontFamily: {
-        sans: ["IBM Plex Sans", "Fira Sans", "Open Sans", "system-ui", "sans-serif"],
+        sans: ["Inter", "IBM Plex Sans", "Fira Sans", "Open Sans", "system-ui", "sans-serif"], // Updated sans font
+        mono: ["Space Mono", "Fira Code", "monospace"], // Added Space Mono and Fira Code for mono
       },
       transitionProperty: {
         colors: "background-color, border-color, color, fill, stroke",

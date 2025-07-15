@@ -1,103 +1,91 @@
 "use client"
-
-import * as React from "react"
 import {
-  LabelList,
-  type LabelListProps,
-  ResponsiveContainer,
-  XAxis,
-  type XAxisProps,
-  type YAxisProps,
   CartesianGrid,
-  type CartesianGridProps,
-  Legend,
-  type LegendProps,
-  Tooltip,
-  type TooltipProps,
+  Line,
+  LineChart,
+  Bar,
+  BarChart,
+  Pie,
+  PieChart,
+  RadialBar,
+  RadialBarChart,
+  Area,
+  AreaChart,
 } from "recharts"
 
-import { cn } from "@/lib/utils"
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 
-// region Chart
+const Chart = ({ type, data, categories, index, className, ...props }) => {
+  const ChartComponent =
+    type === "line"
+      ? LineChart
+      : type === "bar"
+        ? BarChart
+        : type === "pie"
+          ? PieChart
+          : type === "radialbar"
+            ? RadialBarChart
+            : type === "area"
+              ? AreaChart
+              : null
 
-const ChartContext = React.createContext<ChartContextProps>({})
+  if (!ChartComponent) {
+    console.error("Invalid chart type provided.")
+    return null
+  }
 
-type ChartContextProps = {
-  data?: Record<string, any>[]
-  categories?: string[]
-  index?: string
-  colors?: string[]
-}
-
-function Chart({
-  data,
-  categories,
-  index,
-  colors,
-  className,
-  children,
-  ...props
-}: ChartContextProps & React.ComponentPropsWithoutRef<"div">) {
-  const customColors = colors ?? ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#AF19FF", "#FF0000"]
+  const renderChartElements = () => {
+    switch (type) {
+      case "line":
+        return categories.map((category) => (
+          <Line
+            key={category.dataKey}
+            dataKey={category.dataKey}
+            stroke={category.stroke}
+            fill={category.fill}
+            type="monotone"
+            strokeWidth={2}
+            dot={false}
+          />
+        ))
+      case "bar":
+        return categories.map((category) => (
+          <Bar key={category.dataKey} dataKey={category.dataKey} fill={category.fill} radius={[4, 4, 0, 0]} />
+        ))
+      case "area":
+        return categories.map((category) => (
+          <Area
+            key={category.dataKey}
+            dataKey={category.dataKey}
+            stroke={category.stroke}
+            fill={category.fill}
+            type="monotone"
+          />
+        ))
+      case "pie":
+        return <Pie data={data} dataKey="value" nameKey="name" outerRadius={80} label />
+      case "radialbar":
+        return <RadialBar dataKey="value" background clockWise data={data} fill="#8884d8" />
+      default:
+        return null
+    }
+  }
 
   return (
-    <ChartContext.Provider value={{ data, categories, index, colors: customColors }}>
-      <div className={cn("h-[400px] w-full", className)} {...props}>
-        <ResponsiveContainer width="100%" height="100%">
-          {children}
-        </ResponsiveContainer>
-      </div>
-    </ChartContext.Provider>
-  )
-}
-
-// endregion
-
-// region ChartAxis
-
-const ChartAxis = ({ className, ...props }: XAxisProps | YAxisProps | React.ComponentPropsWithoutRef<"div">) => {
-  return <XAxis className={cn("text-sm", className)} stroke="hsl(var(--chart-axis))" {...props} />
-}
-
-// endregion
-
-// region ChartGrid
-
-const ChartGrid = ({ className, ...props }: CartesianGridProps | React.ComponentPropsWithoutRef<"div">) => {
-  return <CartesianGrid className={cn("stroke-dashed", className)} stroke="hsl(var(--chart-grid))" {...props} />
-}
-
-// endregion
-
-// region ChartLegend
-
-const ChartLegend = ({ className, ...props }: LegendProps | React.ComponentPropsWithoutRef<"div">) => {
-  return <Legend className={cn("text-sm", className)} wrapperStyle={{ outline: "none" }} {...props} />
-}
-
-// endregion
-
-// region ChartTooltip
-
-const ChartTooltip = ({ className, ...props }: TooltipProps<any, any> | React.ComponentPropsWithoutRef<"div">) => {
-  return (
-    <Tooltip
-      className={cn("rounded-lg border bg-background p-2 shadow-sm", className)}
-      cursor={{ stroke: "hsl(var(--chart-tooltip-cursor))", strokeDasharray: "8 8" }}
-      wrapperStyle={{ outline: "none" }}
+    <ChartContainer
+      config={Object.fromEntries(
+        categories.map((category) => [category.dataKey, { color: category.stroke || category.fill }]),
+      )}
+      className={className}
       {...props}
-    />
+    >
+      <ChartComponent data={data} margin={{ left: 12, right: 12 }} {...props}>
+        <CartesianGrid vertical={false} />
+        <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+        {renderChartElements()}
+      </ChartComponent>
+    </ChartContainer>
   )
 }
 
-// endregion
-
-// region ChartLabelList
-
-const ChartLabelList = ({ className, ...props }: LabelListProps<any> | React.ComponentPropsWithoutRef<"div">) => {
-  return <LabelList className={cn("fill-foreground", className)} {...props} />
-}
-
-// endregion
-
-export { Chart, ChartAxis, ChartGrid, ChartLegend, ChartTooltip, ChartLabelList }
+export { Chart }
