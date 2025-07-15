@@ -127,38 +127,48 @@ export default function Portfolio() {
       description:
         "Android-based chat application built with Firebase for real-time messaging, user authentication, and cloud storage.",
       tech: ["Android", "Firebase", "Java"],
+      github: "https://github.com/dineshdhayfule",
+      live: "https://github.com/dineshdhayfule",
     },
     {
       title: "Prediction-of-Disease",
       description:
         "Machine learning models for early detection of Diabetes, Heart Disease, and Parkinson's Disease using classification algorithms trained on public datasets.",
-      tech: ["Python", "Scikit-learn", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Pickle"]
-    }
-
-    ,
+      tech: ["Python", "Scikit-learn", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Pickle"],
+      github: "https://github.com/dineshdhayfule",
+      live: "https://github.com/dineshdhayfule",
+    },
     {
       title: "QuizKwik",
       description:
         "Interactive online quiz system featuring timer functionality, automatic scoring, and user progress tracking.",
       tech: ["JavaScript", "PHP", "MySQL"],
+      github: "https://github.com/dineshdhayfule",
+      live: "https://github.com/dineshdhayfule",
     },
     {
       title: "E-Medico",
       description:
         "Comprehensive health and medicine information web application providing medical resources and health tips.",
       tech: ["HTML5", "CSS", "JavaScript", "PHP"],
+      github: "https://github.com/dineshdhayfule",
+      live: "https://github.com/dineshdhayfule",
     },
     {
       title: "ML-Based Legal Document Analysis",
       description:
         "AI-powered system for legal document classification and information extraction using machine learning algorithms.",
       tech: ["Python", "Machine Learning", "NLP"],
+      github: "https://github.com/dineshdhayfule",
+      live: "https://github.com/dineshdhayfule",
     },
     {
       title: "Health Bites",
       description:
         "AI-based health and nutrition platform with personalized recommendations. Backend development in progress.",
       tech: ["Node.js", "Python", "AI/ML"],
+      github: "https://github.com/dineshdhayfule",
+      live: "https://github.com/dineshdhayfule",
     },
   ]
 
@@ -284,7 +294,10 @@ export default function Portfolio() {
                 Aspiring Software Engineer
               </h2>
               <p className="text-lg md:text-xl text-secondary-text max-w-3xl mx-auto leading-relaxed mb-8">
-                Devoted to creating scalable digital solutions, with a focus on machine learning and backend development. Currently pursuing a B.Tech in Computer Science and Engineering, aiming to contribute to a progressive organization where I can apply my technical expertise, grow continuously, and build impactful applications
+                Devoted to creating scalable digital solutions, with a focus on machine learning and backend
+                development. Currently pursuing a B.Tech in Computer Science and Engineering, aiming to contribute to a
+                progressive organization where I can apply my technical expertise, grow continuously, and build
+                impactful applications
               </p>
 
               {/* Career Objective */}
@@ -400,7 +413,30 @@ export default function Portfolio() {
                 >
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-xl font-bold text-primary-text">{project.title}</h3>
-                    <ExternalLink className="text-primary-accent" size={20} />
+                    <div className="flex space-x-3">
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-secondary-text hover:text-primary-accent transition-all duration-200 ease-in-out"
+                          aria-label={`GitHub repository for ${project.title}`}
+                        >
+                          <Github size={20} />
+                        </a>
+                      )}
+                      {project.live && (
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-secondary-text hover:text-primary-accent transition-all duration-200 ease-in-out"
+                          aria-label={`Live demo for ${project.title}`}
+                        >
+                          <ExternalLink size={20} />
+                        </a>
+                      )}
+                    </div>
                   </div>
                   <p className="text-secondary-text mb-4 leading-relaxed">{project.description}</p>
                   <div className="flex flex-wrap gap-2">

@@ -9,4 +9,3 @@
 - Tailwind CSS
 - Radix UI (shadcn/ui)
 - pnpm (package manager)
-
