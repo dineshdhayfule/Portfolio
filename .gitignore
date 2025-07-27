@@ -41,3 +41,6 @@ logs/
 # misc
 *.local
 *.cache
+
+# important cmd
+Imp cmd.txt
