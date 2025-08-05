@@ -327,7 +327,7 @@ export default function Portfolio() {
                 Get In Touch
               </button>
               <a
-                href="https://drive.google.com/file/d/1u_EdxQkzO5ZU5EtV0sp85rNgy0_UurJk/view"
+                href="https://drive.google.com/file/d/1h_a40Ta3NLGMR1VjXglO9LXQFAAv3VqW/view"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border-2 border-secondary-accent text-secondary-accent px-8 py-3 rounded-lg font-medium transition-all duration-200 ease-in-out shadow-professional hover:shadow-elevated transform hover:-translate-y-1 flex items-center justify-center"
