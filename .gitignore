@@ -16,8 +16,11 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files
-.env*
+# env files (keep .env.example, .env.local.example)
+.env
+.env*.local
+!.env.example
+!.env*.example
 
 # vercel
 .vercel
@@ -42,5 +45,14 @@ logs/
 *.local
 *.cache
 
-# important cmd
-Imp cmd.txt
+# testing
+/coverage
+.nyc_output
+
+# turbo
+.turbo
+
+# lockfiles (optional - remove if you want to commit them)
+# pnpm-lock.yaml
+# package-lock.json
+# yarn.lock

@@ -17,84 +17,22 @@ import {
   Settings,
   Database,
   GitBranch,
-  Sun,
-  Moon,
 } from "lucide-react"
 
-// Theme Context
-interface ThemeContextType {
-  theme: "light" | "dark"
-  toggleTheme: () => void
-}
-
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
-
-// Custom hook to use theme
-const useTheme = () => {
-  const context = useContext(ThemeContext)
-  if (!context) {
-    throw new Error("useTheme must be used within a ThemeProvider")
-  }
-  return context
-}
-
-// Theme Provider Component
+// Theme Provider Component - Always Dark Theme
 const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<"light" | "dark">("dark")
-
   useEffect(() => {
-    // Check localStorage for saved theme preference
-    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null
-    if (savedTheme) {
-      setTheme(savedTheme)
-    } else {
-      // Default to light theme if no preference is saved
-      setTheme("dark")
-    }
+    // Force dark theme
+    document.documentElement.className = "dark"
   }, [])
 
-  useEffect(() => {
-    // Save theme to localStorage and update document class
-    localStorage.setItem("theme", theme)
-    document.documentElement.className = theme
-  }, [theme])
-
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"))
-  }
-
-  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>
-}
-
-// Theme Toggle Button Component
-const ThemeToggle: React.FC = () => {
-  const { theme, toggleTheme } = useTheme()
-
-  const getThemeIcon = () => {
-    if (theme === "light") {
-      return <Moon size={20} className="text-text-primary" />
-    }
-    return <Sun size={20} className="text-text-primary" />
-  }
-
-  const getAriaLabel = () => {
-    if (theme === "light") return "Switch to dark mode"
-    return "Switch to light mode"
-  }
-
-  return (
-    <button
-      onClick={toggleTheme}
-      className="theme-toggle p-2 rounded-lg bg-surface hover:bg-surface-hover border border-border shadow-subtle"
-      aria-label={getAriaLabel()}
-    >
-      {getThemeIcon()}
-    </button>
-  )
+  return <>{children}</>
 }
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
   const [formData, setFormData] = useState({
     name: "",
@@ -102,11 +40,40 @@ export default function Portfolio() {
     message: "",
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
-    alert("Thank you for your message! I'll get back to you soon.")
-    setFormData({ name: "", email: "", message: "" })
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || 'YOUR_ACCESS_KEY_HERE',
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        setSubmitStatus('success')
+        setFormData({ name: "", email: "", message: "" })
+        setTimeout(() => setSubmitStatus('idle'), 5000)
+      } else {
+        setSubmitStatus('error')
+      }
+    } catch (error) {
+      console.error('Form submission error:', error)
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const skillCategories = [
@@ -252,12 +219,10 @@ export default function Portfolio() {
                     {item}
                   </button>
                 ))}
-                <ThemeToggle />
               </div>
 
               {/* Mobile Menu Button */}
               <div className="md:hidden flex items-center space-x-4">
-                <ThemeToggle />
                 <button className="text-text-primary" onClick={() => setIsMenuOpen(!isMenuOpen)}>
                   {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
@@ -497,11 +462,10 @@ export default function Portfolio() {
                   <div className="flex flex-col md:flex-row md:items-center justify-between mb-2">
                     <h3 className="text-xl font-bold text-primary-text">{edu.degree}</h3>
                     <span
-                      className={`px-3 py-1 rounded-lg text-sm font-medium ${
-                        edu.status === "Pursuing"
-                          ? "bg-secondary-accent/10 text-secondary-accent border border-secondary-accent/20"
-                          : "bg-primary-accent/10 text-primary-accent border border-primary-accent/20"
-                      }`}
+                      className={`px-3 py-1 rounded-lg text-sm font-medium ${edu.status === "Pursuing"
+                        ? "bg-secondary-accent/10 text-secondary-accent border border-secondary-accent/20"
+                        : "bg-primary-accent/10 text-primary-accent border border-primary-accent/20"
+                        }`}
                     >
                       {edu.status}
                     </span>
@@ -616,10 +580,21 @@ export default function Portfolio() {
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-button-bg hover:bg-button-hover text-button-text py-3 rounded-xl font-medium transition-all duration-200 ease-in-out shadow-professional hover:shadow-elevated transform hover:-translate-y-1"
+                    disabled={isSubmitting}
+                    className="w-full bg-button-bg hover:bg-button-hover text-button-text py-3 rounded-xl font-medium transition-all duration-200 ease-in-out shadow-professional hover:shadow-elevated transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                   >
-                    Send Message
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                   </button>
+                  {submitStatus === 'success' && (
+                    <div className="text-green-500 text-center font-medium">
+                      ✓ Message sent successfully! I'll get back to you soon.
+                    </div>
+                  )}
+                  {submitStatus === 'error' && (
+                    <div className="text-red-500 text-center font-medium">
+                      ✗ Failed to send message. Please try again or contact me directly.
+                    </div>
+                  )}
                 </form>
               </motion.div>
 

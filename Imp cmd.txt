@@ -1,0 +1,8 @@
+# Deployment
+vercel                  # Deploy preview
+vercel --prod          # Deploy to production
+vercel --open          # Deploy and open in browser
+
+
+# run 
+pnpm run dev
