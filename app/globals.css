@@ -24,22 +24,38 @@
 
 /* CSS Variables for Dark Mode (now "Dark Web Show" aesthetic) */
 .dark {
-  --bg-background: hsl(0 0% 0%); /* pure black */
-  --bg-background-secondary: hsl(0 0% 0%); /* all cards / main sections */
-  --bg-surface: hsl(0 0% 0%); /* all cards / main sections */
-  --bg-surface-hover: #1e2638; /* rare overlays / modals */
-  --text-primary: #e0f5ff; /* main body & heading text */
-  --text-secondary: #9ec0d8; /* sub-text, captions */
-  --text-disabled: #5a7790; /* placeholders, tertiary info */
-  --border-color: #3a4b60; /* horizontal rules / thin borders */
-  --accent-blue: #00c2ff; /* electric cyan (primary accent) */
-  --accent-red: #ea4335; /* Keeping existing red for consistency if needed */
-  --accent-yellow: #fbbc04; /* Keeping existing yellow for consistency if needed */
-  --accent-green: #76ee00; /* muted neon green (secondary accent) */
-  --accent-cyan: #4fc3f7; /* lighter cyan for hover/focus states (interactive accent) */
-  --button-bg: #202f40; /* Button Background (Filled) */
-  --button-hover: #1e2638; /* Button Hover (using surface-secondary for depth) */
-  --button-text: #e0f5ff; /* Filled Button Text: Primary Text Color */
+  --bg-background: hsl(0 0% 0%);
+  /* pure black */
+  --bg-background-secondary: hsl(0 0% 0%);
+  /* all cards / main sections */
+  --bg-surface: hsl(0 0% 0%);
+  /* all cards / main sections */
+  --bg-surface-hover: #1e2638;
+  /* rare overlays / modals */
+  --text-primary: #e0f5ff;
+  /* main body & heading text */
+  --text-secondary: #9ec0d8;
+  /* sub-text, captions */
+  --text-disabled: #5a7790;
+  /* placeholders, tertiary info */
+  --border-color: #3a4b60;
+  /* horizontal rules / thin borders */
+  --accent-blue: #00c2ff;
+  /* electric cyan (primary accent) */
+  --accent-red: #ea4335;
+  /* Keeping existing red for consistency if needed */
+  --accent-yellow: #fbbc04;
+  /* Keeping existing yellow for consistency if needed */
+  --accent-green: #76ee00;
+  /* muted neon green (secondary accent) */
+  --accent-cyan: #4fc3f7;
+  /* lighter cyan for hover/focus states (interactive accent) */
+  --button-bg: #202f40;
+  /* Button Background (Filled) */
+  --button-hover: #1e2638;
+  /* Button Hover (using surface-secondary for depth) */
+  --button-text: #e0f5ff;
+  /* Filled Button Text: Primary Text Color */
 }
 
 /* Global transitions for smooth theme switching */
@@ -59,8 +75,9 @@ body {
   font-family: "Inter", "IBM Plex Sans", "Fira Sans", "Open Sans", system-ui, sans-serif;
   background-color: var(--bg-background);
   color: var(--text-primary);
-  line-height: 1.6; /* Generous line-height for readability */
-  cursor: url("/cursors/custom-cursor.png") 8 8, auto;
+  line-height: 1.6;
+  /* Generous line-height for readability */
+  cursor: auto;
 }
 
 /* Apply Space Mono or Inter bold to headings in dark theme */
@@ -70,8 +87,10 @@ body {
 .dark h4,
 .dark h5,
 .dark h6 {
-  font-family: "Space Mono", "Inter", monospace; /* Prioritize Space Mono, fallback to Inter */
-  font-weight: 700; /* Ensure bold for Inter if Space Mono isn't used */
+  font-family: "Space Mono", "Inter", monospace;
+  /* Prioritize Space Mono, fallback to Inter */
+  font-weight: 700;
+  /* Ensure bold for Inter if Space Mono isn't used */
 }
 
 /* Custom scrollbar for all themes */
@@ -97,7 +116,8 @@ button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 a:focus-visible {
-  outline: 2px solid var(--accent-cyan); /* Subtle Interactive Highlight for focus rings */
+  outline: 2px solid var(--accent-cyan);
+  /* Subtle Interactive Highlight for focus rings */
   outline-offset: 2px;
 }
 
@@ -142,11 +162,13 @@ a:focus-visible {
 }
 
 .dark .hover\:bg-primary-accent-glow:hover {
-  box-shadow: 0 0 12px var(--accent-cyan); /* Use accent-hover for stronger glow on hover */
+  box-shadow: 0 0 12px var(--accent-cyan);
+  /* Use accent-hover for stronger glow on hover */
 }
 
 .dark .hover\:border-primary-accent-glow:hover {
-  box-shadow: 0 0 12px var(--accent-cyan); /* Use accent-hover for stronger glow on hover */
+  box-shadow: 0 0 12px var(--accent-cyan);
+  /* Use accent-hover for stronger glow on hover */
 }
 
 /* ------------------------------------------------------------------ */
@@ -156,12 +178,15 @@ a:focus-visible {
   .bg-background {
     background-color: var(--bg-background);
   }
+
   .bg-background-secondary {
     background-color: var(--bg-background-secondary);
   }
+
   .bg-surface {
     background-color: var(--bg-surface);
   }
+
   .bg-surface-hover {
     background-color: var(--bg-surface-hover);
   }
@@ -169,9 +194,11 @@ a:focus-visible {
   .text-text-primary {
     color: var(--text-primary);
   }
+
   .text-text-secondary {
     color: var(--text-secondary);
   }
+
   .text-text-disabled {
     color: var(--text-disabled);
   }
@@ -183,9 +210,11 @@ a:focus-visible {
   .text-primary-accent {
     color: var(--accent-blue);
   }
+
   .text-secondary-accent {
     color: var(--accent-green);
   }
+
   .text-accent-hover {
     color: var(--accent-cyan);
   }
@@ -193,9 +222,11 @@ a:focus-visible {
   .bg-primary-accent {
     background-color: var(--accent-blue);
   }
+
   .bg-secondary-accent {
     background-color: var(--accent-green);
   }
+
   .bg-accent-hover {
     background-color: var(--accent-cyan);
   }
@@ -203,9 +234,11 @@ a:focus-visible {
   .bg-button-bg {
     background-color: var(--button-bg);
   }
+
   .hover\:bg-button-hover:hover {
     background-color: var(--button-hover);
   }
+
   .text-button-text {
     color: var(--button-text);
   }
@@ -213,9 +246,11 @@ a:focus-visible {
   .border-primary-accent {
     border-color: var(--accent-blue);
   }
+
   .border-secondary-accent {
     border-color: var(--accent-green);
   }
+
   .border-divider {
     border-color: var(--border-color);
   }

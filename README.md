@@ -4,7 +4,7 @@ A modern, responsive portfolio website built with Next.js and TypeScript, featur
 
 ## 🚀 Live Demo
 
-**[View Live Site](https://v0-one-page-portfolio-website-npv1m1936.vercel.app)**
+**[View Live Site](https://dinesh-dhayfule-portfolio.vercel.app)**
 
 [![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/dineshdhayfule-5542s-projects/v0-one-page-portfolio-website)
 
@@ -16,6 +16,8 @@ A modern, responsive portfolio website built with Next.js and TypeScript, featur
 - 🎭 **Smooth Animations** - Powered by Framer Motion
 - 🎯 **Type-Safe** - Written in TypeScript
 - 🧩 **Component-Based** - Modular UI with shadcn/ui
+- 📧 **Working Contact Form** - Integrated with Web3Forms for email submissions
+- 🎯 **SEO Optimized** - Proper meta tags and semantic HTML
 
 ## 🛠️ Tech Stack
 
@@ -25,6 +27,7 @@ A modern, responsive portfolio website built with Next.js and TypeScript, featur
 - **UI Components:** [Radix UI](https://www.radix-ui.com/) / [shadcn/ui](https://ui.shadcn.com/) - Accessible component library
 - **Animations:** [Framer Motion](https://www.framer.com/motion/) - Production-ready motion library
 - **Icons:** [Lucide React](https://lucide.dev/) - Beautiful & consistent icons
+- **Contact Form:** [Web3Forms](https://web3forms.com/) - Simple contact form backend
 - **Package Manager:** [pnpm](https://pnpm.io/) - Fast, disk space efficient
 
 ## 📦 Installation
@@ -38,6 +41,10 @@ cd Portfolio-
 
 # Install dependencies
 pnpm install
+
+# Set up environment variables
+cp .env.local.example .env.local
+# Add your Web3Forms access key to .env.local
 ```
 
 ## 🚀 Development
@@ -88,6 +95,22 @@ To customize the portfolio for your needs:
 3. **Add components** in the `components/` directory
 4. **Update metadata** in `app/layout.tsx` for SEO
 
+## 📧 Contact Form Setup
+
+The contact form uses [Web3Forms](https://web3forms.com/) for handling submissions:
+
+1. Get your free access key from [web3forms.com](https://web3forms.com/)
+2. Create a `.env.local` file (copy from `.env.local.example`)
+3. Add your access key:
+
+   ```
+   NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=your_access_key_here
+   ```
+
+4. For production, add the environment variable in Vercel settings
+
+See [SETUP_WEB3FORMS.md](./SETUP_WEB3FORMS.md) for detailed instructions.
+
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
@@ -97,12 +120,13 @@ This project is open source and available under the [MIT License](LICENSE).
 **Dinesh Dhayfule**
 
 - GitHub: [@dineshdhayfule](https://github.com/dineshdhayfule)
-- Portfolio: [Live Site](https://v0-one-page-portfolio-website-npv1m1936.vercel.app)
+- Portfolio: [dinesh-dhayfule-portfolio.vercel.app](https://dinesh-dhayfule-portfolio.vercel.app)
 
 ## 🙏 Acknowledgments
 
 - Built with [v0.dev](https://v0.dev) inspiration
 - UI components from [shadcn/ui](https://ui.shadcn.com/)
+- Contact form by [Web3Forms](https://web3forms.com/)
 - Deployed on [Vercel](https://vercel.com)
 
 ---
