@@ -34,10 +34,10 @@ A modern, responsive portfolio website built with Next.js and TypeScript, featur
 
 ```bash
 # Clone the repository
-git clone https://github.com/dineshdhayfule/secure-repo-handshake.git
+git clone https://github.com/dineshdhayfule/Portfolio.git
 
 # Navigate to project directory
-cd Portfolio-
+cd Portfolio
 
 # Install dependencies
 pnpm install
