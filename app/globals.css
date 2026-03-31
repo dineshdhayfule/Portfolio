@@ -1,257 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* CSS Variables for Light Mode (default) */
-:root {
-  --bg-background: #ffffff;
-  --bg-background-secondary: #f5f5f5;
-  --bg-surface: #f1f3f4;
-  --bg-surface-hover: #e8eaed;
-  --text-primary: #202124;
-  --text-secondary: #5f6368;
-  --text-disabled: #a0aec0;
-  --border-color: #dadce0;
-  --accent-blue: #4285f4;
-  --accent-red: #ea4335;
-  --accent-yellow: #fbbc04;
-  --accent-green: #34a853;
-  --accent-cyan: #4fc3f7;
-  --button-bg: #455a64;
-  --button-hover: #546e7a;
-  --button-text: #eceff1;
+@layer base {
+  :root {
+    --bg: #000000;
+    --bg-alt: #0b0f14;
+    --card: #0f141a;
+    --card-hover: #131a22;
+    --primary: #00d4ff;
+    --primary-hover: #388bfd;
+    --secondary: #388bfd;
+    --accent-soft: #79c0ff;
+    --accent-glow: rgba(56, 139, 253, 0.1);
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --text-primary: #e6edf3;
+    --text-secondary: #9da7b3;
+    --text-muted: #6e7681;
+    --border: #1c232b;
+    --divider: #141a21;
+    --border-hover: rgba(56, 139, 253, 0.45);
+
+    /* Existing token compatibility */
+    --bg-primary: var(--bg);
+    --bg-secondary: var(--bg-alt);
+    --bg-card: var(--card);
+    --bg-card-hover: var(--card-hover);
+    --accent: var(--primary);
+    --accent-light: var(--accent-soft);
+    --glass-bg: var(--card);
+    --glass-border: var(--border);
+  }
+
+  .dark {
+    --bg: #000000;
+    --bg-alt: #0b0f14;
+    --card: #0f141a;
+    --card-hover: #131a22;
+    --primary: #00d4ff;
+    --primary-hover: #388bfd;
+    --secondary: #388bfd;
+    --accent-soft: #79c0ff;
+    --accent-glow: rgba(56, 139, 253, 0.1);
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --text-primary: #e6edf3;
+    --text-secondary: #9da7b3;
+    --text-muted: #6e7681;
+    --border: #1c232b;
+    --divider: #141a21;
+    --border-hover: rgba(56, 139, 253, 0.45);
+
+    /* Existing token compatibility */
+    --bg-primary: var(--bg);
+    --bg-secondary: var(--bg-alt);
+    --bg-card: var(--card);
+    --bg-card-hover: var(--card-hover);
+    --accent: var(--primary);
+    --accent-light: var(--accent-soft);
+    --glass-bg: var(--card);
+    --glass-border: var(--border);
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
 
-/* CSS Variables for Dark Mode (now "Dark Web Show" aesthetic) */
-.dark {
-  --bg-background: hsl(0 0% 0%);
-  /* pure black */
-  --bg-background-secondary: hsl(0 0% 0%);
-  /* all cards / main sections */
-  --bg-surface: hsl(0 0% 0%);
-  /* all cards / main sections */
-  --bg-surface-hover: #1e2638;
-  /* rare overlays / modals */
-  --text-primary: #e0f5ff;
-  /* main body & heading text */
-  --text-secondary: #9ec0d8;
-  /* sub-text, captions */
-  --text-disabled: #5a7790;
-  /* placeholders, tertiary info */
-  --border-color: #3a4b60;
-  /* horizontal rules / thin borders */
-  --accent-blue: #00c2ff;
-  /* electric cyan (primary accent) */
-  --accent-red: #ea4335;
-  /* Keeping existing red for consistency if needed */
-  --accent-yellow: #fbbc04;
-  /* Keeping existing yellow for consistency if needed */
-  --accent-green: #76ee00;
-  /* muted neon green (secondary accent) */
-  --accent-cyan: #4fc3f7;
-  /* lighter cyan for hover/focus states (interactive accent) */
-  --button-bg: #202f40;
-  /* Button Background (Filled) */
-  --button-hover: #1e2638;
-  /* Button Hover (using surface-secondary for depth) */
-  --button-text: #e0f5ff;
-  /* Filled Button Text: Primary Text Color */
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
+
+/* Glass */
+.glass {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }
 
-/* Global transitions for smooth theme switching */
-* {
-  transition:
-    background-color 0.3s ease-out, color 0.3s ease-out, border-color 0.3s ease-out, box-shadow 0.3s ease-out, text-shadow 0.3s ease-out, transform 0.3s ease-out;
+/* Gradient text */
+.text-gradient {
+  color: var(--accent-soft);
 }
 
-/* Font imports */
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap");
-
-/* Base styles */
-body {
-  font-family: "Inter", "IBM Plex Sans", "Fira Sans", "Open Sans", system-ui, sans-serif;
-  background-color: var(--bg-background);
-  color: var(--text-primary);
-  line-height: 1.6;
-  /* Generous line-height for readability */
-  cursor: auto;
+/* Hero mesh gradient */
+.hero-gradient {
+  background: linear-gradient(180deg, rgba(56, 139, 253, 0.06) 0%, transparent 35%);
 }
 
-/* Apply Space Mono or Inter bold to headings in dark theme */
-.dark h1,
-.dark h2,
-.dark h3,
-.dark h4,
-.dark h5,
-.dark h6 {
-  font-family: "Space Mono", "Inter", monospace;
-  /* Prioritize Space Mono, fallback to Inter */
-  font-weight: 700;
-  /* Ensure bold for Inter if Space Mono isn't used */
+.hero-grid {
+  background-image: linear-gradient(var(--text-muted) 1px, transparent 1px), linear-gradient(90deg, var(--text-muted) 1px, transparent 1px);
+  background-size: 60px 60px;
 }
 
-/* Custom scrollbar for all themes */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-surface);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--text-secondary);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--text-primary);
-}
-
-/* Focus styles for accessibility */
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-a:focus-visible {
-  outline: 2px solid var(--accent-cyan);
-  /* Subtle Interactive Highlight for focus rings */
+/* Focus */
+button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visible {
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
-/* Animation for theme toggle button */
-.theme-toggle {
-  transform: scale(1);
-  transition: transform 0.2s ease, background-color 0.2s ease-in-out;
+/* Selection */
+::selection {
+  background-color: rgba(56, 139, 253, 0.25);
+  color: var(--text-primary);
 }
 
-.theme-toggle:hover {
-  transform: scale(1.05);
+/* Skill bar animation */
+@keyframes skillFill {
+  from { width: 0%; }
+}
+.skill-bar-fill {
+  animation: skillFill 1s ease-out forwards;
 }
 
-.theme-toggle:active {
-  transform: scale(0.95);
+/* Utility transition for subtle hover states */
+.ui-hover {
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
-/* Professional shadow system */
-.shadow-subtle {
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+.glass.ui-hover:hover {
+  border-color: var(--border-hover);
 }
 
-.shadow-professional {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+.btn-primary-force {
+  color: #000000 !important;
 }
 
-.shadow-elevated {
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-}
-
-/* Dark theme specific glow effects */
-.dark .text-primary-accent-glow {
-  text-shadow: 0 0 6px var(--accent-blue), 0 0 12px var(--accent-blue);
-}
-
-.dark .bg-primary-accent-glow {
-  box-shadow: 0 0 8px rgba(0, 194, 255, 0.15);
-}
-
-.dark .border-primary-accent-glow {
-  box-shadow: 0 0 8px rgba(0, 194, 255, 0.15);
-}
-
-.dark .hover\:bg-primary-accent-glow:hover {
-  box-shadow: 0 0 12px var(--accent-cyan);
-  /* Use accent-hover for stronger glow on hover */
-}
-
-.dark .hover\:border-primary-accent-glow:hover {
-  box-shadow: 0 0 12px var(--accent-cyan);
-  /* Use accent-hover for stronger glow on hover */
-}
-
-/* ------------------------------------------------------------------ */
-/* Utility classes generated via @layer instead of a Tailwind plugin  */
-/* ------------------------------------------------------------------ */
-@layer utilities {
-  .bg-background {
-    background-color: var(--bg-background);
-  }
-
-  .bg-background-secondary {
-    background-color: var(--bg-background-secondary);
-  }
-
-  .bg-surface {
-    background-color: var(--bg-surface);
-  }
-
-  .bg-surface-hover {
-    background-color: var(--bg-surface-hover);
-  }
-
-  .text-text-primary {
-    color: var(--text-primary);
-  }
-
-  .text-text-secondary {
-    color: var(--text-secondary);
-  }
-
-  .text-text-disabled {
-    color: var(--text-disabled);
-  }
-
-  .border-border {
-    border-color: var(--border-color);
-  }
-
-  .text-primary-accent {
-    color: var(--accent-blue);
-  }
-
-  .text-secondary-accent {
-    color: var(--accent-green);
-  }
-
-  .text-accent-hover {
-    color: var(--accent-cyan);
-  }
-
-  .bg-primary-accent {
-    background-color: var(--accent-blue);
-  }
-
-  .bg-secondary-accent {
-    background-color: var(--accent-green);
-  }
-
-  .bg-accent-hover {
-    background-color: var(--accent-cyan);
-  }
-
-  .bg-button-bg {
-    background-color: var(--button-bg);
-  }
-
-  .hover\:bg-button-hover:hover {
-    background-color: var(--button-hover);
-  }
-
-  .text-button-text {
-    color: var(--button-text);
-  }
-
-  .border-primary-accent {
-    border-color: var(--accent-blue);
-  }
-
-  .border-secondary-accent {
-    border-color: var(--accent-green);
-  }
-
-  .border-divider {
-    border-color: var(--border-color);
-  }
+.btn-primary-force svg,
+.btn-primary-force span {
+  color: #000000 !important;
 }

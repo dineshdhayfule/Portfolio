@@ -1,20 +1,27 @@
 import type { Metadata } from 'next'
+import { ThemeProvider } from 'next-themes'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Portfolio',
-  description: 'Created with v0',
-  generator: 'v0.dev',
+  title: 'Dinesh Dhayfule — Software Developer',
+  description: 'Software Developer building scalable web apps, production-ready APIs, and ML-powered solutions. B.Tech CSE student from Solapur, India.',
+  keywords: ['Software Developer', 'Web Developer', 'Full Stack', 'Portfolio', 'Dinesh Dhayfule'],
+  authors: [{ name: 'Dinesh Dhayfule' }],
+  openGraph: {
+    title: 'Dinesh Dhayfule — Software Developer',
+    description: 'I build scalable web applications, production APIs, and intelligent software solutions.',
+    type: 'website',
+  },
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body className="antialiased">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} forcedTheme="dark">
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   )
 }

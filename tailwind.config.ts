@@ -1,83 +1,39 @@
 import type { Config } from "tailwindcss"
-import animate from "tailwindcss-animate"
 
 const config: Config = {
-  darkMode: ["class"], // Reverted darkMode to only "class"
-  content: ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}", "*.{js,ts,jsx,tsx,mdx}"],
+  darkMode: "class",
+  content: ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}"],
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", "IBM Plex Sans", "Fira Sans", "Open Sans", "system-ui", "sans-serif"], // Updated sans font
-        mono: ["Space Mono", "Fira Code", "monospace"], // Added Space Mono and Fira Code for mono
-      },
-      transitionProperty: {
-        colors: "background-color, border-color, color, fill, stroke",
+        sans: ["Inter", "system-ui", "sans-serif"],
+        mono: ["JetBrains Mono", "monospace"],
       },
       colors: {
-        // Core backgrounds - now using CSS variables from globals.css
-        "core-bg": "var(--bg-background)",
-        "surface-bg": "var(--bg-surface)",
-        "elevated-bg": "var(--bg-surface-hover)", // Using surface-hover for higher elevation
-
-        // Accent colors - now using CSS variables from globals.css
-        "primary-accent": "var(--accent-blue)",
-        "secondary-accent": "var(--accent-green)", // Using accent-green for lime green
-        "subtle-highlight": "var(--accent-cyan)", // New variable for subtle cyan
-
-        // Text colors - now using CSS variables from globals.css
-        "primary-text": "var(--text-primary)",
-        "secondary-text": "var(--text-secondary)",
-        "disabled-text": "var(--text-disabled)", // New variable for disabled text
-
-        // UI elements - now using CSS variables from globals.css
-        "button-bg": "var(--button-bg)",
-        "button-hover": "var(--button-hover)",
-        "button-text": "var(--button-text)",
-        divider: "var(--border-color)", // Using border-color for divider
-
-        // shadcn/ui colors (keeping these as they are standard)
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
+        "bg-primary": "var(--bg-primary)",
+        "bg-secondary": "var(--bg-secondary)",
+        "bg-card": "var(--bg-card)",
+        "bg-card-hover": "var(--bg-card-hover)",
+        secondary: "var(--secondary)",
+        accent: { DEFAULT: "var(--accent)", light: "var(--accent-light)", soft: "var(--accent-soft)", glow: "var(--accent-glow)" },
+        success: "var(--success)",
+        warning: "var(--warning)",
+        danger: "var(--danger)",
+        "content-primary": "var(--text-primary)",
+        "content-secondary": "var(--text-secondary)",
+        "content-muted": "var(--text-muted)",
       },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+      animation: {
+        "fade-in": "fadeIn 0.6s ease-out",
+        "slide-up": "slideUp 0.6s ease-out",
+      },
+      keyframes: {
+        fadeIn: { "0%": { opacity: "0" }, "100%": { opacity: "1" } },
+        slideUp: { "0%": { transform: "translateY(16px)", opacity: "0" }, "100%": { transform: "translateY(0)", opacity: "1" } },
       },
     },
   },
-  plugins: [animate],
+  plugins: [],
 }
 
 export default config
