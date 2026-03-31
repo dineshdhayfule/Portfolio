@@ -70,6 +70,8 @@
   body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     background-color: var(--bg-primary);
+    background-image: linear-gradient(rgba(110, 118, 129, 0.09) 1px, transparent 1px), linear-gradient(90deg, rgba(110, 118, 129, 0.09) 1px, transparent 1px);
+    background-size: 60px 60px;
     color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

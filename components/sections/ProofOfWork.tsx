@@ -5,7 +5,7 @@ import { personalInfo, stats } from "@/lib/data"
 import ParallaxSection, { SectionHeader } from "@/components/ui/ParallaxSection"
 import GlassCard from "@/components/ui/GlassCard"
 import AnimatedCounter from "@/components/ui/AnimatedCounter"
-import Button from "@/components/ui/Button"
+import Button from "@/components/ui/button"
 
 export default function ProofOfWork() {
   const grid = useMemo(() => {

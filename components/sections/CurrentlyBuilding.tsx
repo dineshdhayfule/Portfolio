@@ -4,7 +4,7 @@ import { projects } from "@/lib/data"
 import ParallaxSection, { SectionHeader } from "@/components/ui/ParallaxSection"
 import GlassCard from "@/components/ui/GlassCard"
 import Badge from "@/components/ui/badge"
-import Button from "@/components/ui/Button"
+import Button from "@/components/ui/button"
 
 export default function CurrentlyBuilding() {
   const building = projects.filter((p) => p.isBuilding)

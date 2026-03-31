@@ -5,7 +5,7 @@ import { Send, Github, Linkedin, Mail, MapPin } from "lucide-react"
 import { personalInfo } from "@/lib/data"
 import ParallaxSection, { SectionHeader } from "@/components/ui/ParallaxSection"
 import GlassCard from "@/components/ui/GlassCard"
-import Button from "@/components/ui/Button"
+import Button from "@/components/ui/button"
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" })

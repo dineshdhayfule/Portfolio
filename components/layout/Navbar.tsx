@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Menu, X, FileText } from "lucide-react"
 import { navItems, personalInfo } from "@/lib/data"
-import Button from "@/components/ui/Button"
+import Button from "@/components/ui/button"
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)

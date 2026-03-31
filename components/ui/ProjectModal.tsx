@@ -2,7 +2,7 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { X, Github, ExternalLink } from "lucide-react"
 import Badge from "./badge"
-import Button from "./Button"
+import Button from "./button"
 import Image from "next/image"
 
 interface Project { id: string; title: string; subtitle: string; problem: string; solution: string; impact: string; tech: string[]; github: string; live: string; stats: { label: string; value: string }[]; image: string; color: string; isBuilding?: boolean }

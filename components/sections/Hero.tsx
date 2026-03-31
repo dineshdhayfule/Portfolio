@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import { Github, Linkedin, Mail, FileText, ChevronDown, MapPin } from "lucide-react"
 import { personalInfo, stats } from "@/lib/data"
 import TypeWriter from "@/components/ui/TypeWriter"
-import Button from "@/components/ui/Button"
+import Button from "@/components/ui/button"
 import Badge from "@/components/ui/badge"
 import AnimatedCounter from "@/components/ui/AnimatedCounter"
 
@@ -18,9 +18,6 @@ export default function Hero() {
   return (
     <section ref={ref} id="hero" className="min-h-screen flex items-center justify-center px-4 pt-20 pb-10 relative overflow-hidden">
       <motion.div className="absolute inset-0 hero-gradient" style={{ y: bgY }} />
-
-      <div className="absolute inset-0 opacity-[0.015] hero-grid" />
-
       <motion.div className="max-w-4xl mx-auto text-center relative z-10" style={{ opacity: contentOpacity, y: contentY }}>
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
           <Badge variant="success" className="mb-4 px-4 py-2 text-sm">
