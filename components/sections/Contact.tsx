@@ -56,8 +56,8 @@ export default function Contact() {
               { icon: MapPin, label: personalInfo.location, href: "#" },
             ].map(({ icon: Icon, label, href }) => (
               <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 bg-neo-secondary border-4 border-black text-black font-black uppercase tracking-widest shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-transform cursor-pointer">
-                <Icon size={24} className="stroke-[3px] text-black" /> {label}
+                className="flex items-center gap-4 p-4 min-h-[48px] bg-neo-secondary border-4 border-black text-black font-black uppercase tracking-widest shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-transform cursor-pointer">
+                <Icon size={24} className="stroke-[3px] text-black flex-shrink-0" /> <span className="break-all">{label}</span>
               </a>
             ))}
           </div>

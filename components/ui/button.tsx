@@ -10,7 +10,7 @@ export default function Button({ children, variant = "primary", size = "md", hre
     outline: "bg-white border-black text-black shadow-neo-sm btn-push hover:bg-gray-50",
     ghost: "bg-transparent border-transparent text-black hover:border-black hover:shadow-neo-sm active:translate-y-[2px] active:translate-x-[2px]",
   }
-  const sizes: Record<string, string> = { sm: "h-10 px-4 text-xs", md: "h-12 px-6 text-sm", lg: "h-14 px-8 text-base" }
+  const sizes: Record<string, string> = { sm: "min-h-[48px] px-4 py-2 text-xs", md: "min-h-[48px] px-6 text-sm", lg: "min-h-[56px] px-8 text-base" }
   const cls = `${base} ${variants[variant]} ${sizes[size]} ${disabled ? "opacity-50 cursor-not-allowed active:translate-x-0 active:translate-y-0" : ""} ${className}`
 
   if (href) return <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined} className={cls}>{children}</a>

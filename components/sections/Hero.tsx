@@ -27,12 +27,12 @@ export default function Hero() {
           </div>
           
           <div className="relative inline-block mb-6 -rotate-1">
-            <h1 className="text-6xl sm:text-7xl md:text-8xl font-black uppercase tracking-tighter leading-none text-black relative z-10">
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none text-black relative z-10 break-words">
               Dinesh <br className="sm:hidden"/> 
               <span className="inline-block bg-neo-secondary px-2 border-4 border-black shadow-neo-sm transform rotate-2">Dhayfule</span>
             </h1>
             {/* Background text stroke for depth */}
-            <h1 className="text-6xl sm:text-7xl md:text-8xl font-black uppercase tracking-tighter leading-none absolute top-2 left-2 text-transparent text-stroke-black z-0 pointer-events-none">
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none absolute top-2 left-2 text-transparent text-stroke-black z-0 pointer-events-none break-words">
               Dinesh <br className="sm:hidden"/> Dhayfule
             </h1>
           </div>
@@ -50,10 +50,10 @@ export default function Hero() {
           </p>
         </motion.div>
 
-        <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2, type: "spring" }} className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-          <Button href="#contact" variant="primary" size="lg" className="rotate-1">Hire Me</Button>
-          <Button href="#projects" variant="secondary" size="lg" className="-rotate-1">View Projects</Button>
-          <Button href={personalInfo.resume} variant="outline" size="lg"><FileText size={20} className="stroke-[3px]" /> Resume</Button>
+        <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2, type: "spring" }} className="flex flex-col sm:flex-row gap-4 justify-center mb-12 w-full max-w-md sm:max-w-none mx-auto">
+          <Button href="#contact" variant="primary" size="lg" className="w-full sm:w-auto rotate-1">Hire Me</Button>
+          <Button href="#projects" variant="secondary" size="lg" className="w-full sm:w-auto -rotate-1">View Projects</Button>
+          <Button href={personalInfo.resume} variant="outline" size="lg" className="w-full sm:w-auto"><FileText size={20} className="stroke-[3px]" /> Resume</Button>
         </motion.div>
 
         <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.4, type: "spring" }} className="flex justify-center gap-6 mb-16">

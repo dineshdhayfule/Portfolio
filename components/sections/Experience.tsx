@@ -17,7 +17,7 @@ export default function Experience() {
             {experience.map((exp, i) => (
               <motion.div key={exp.role} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
                 <div className="bg-white border-4 border-black p-6 shadow-neo-md rotate-1 hover:-rotate-1 transition-transform cursor-pointer">
-                  <div className="flex items-start justify-between mb-4">
+                  <div className="flex flex-col sm:flex-row items-start justify-between mb-4 gap-4">
                     <div><h4 className="font-black text-xl uppercase text-black">{exp.role}</h4><p className="text-black font-bold uppercase tracking-wider bg-neo-secondary inline-block px-2 border-2 border-black mt-1">{exp.company}</p></div>
                     <Badge variant={exp.type === "internship" ? "accent" : "default"}>{exp.type === "internship" ? "Internship" : "Training"}</Badge>
                   </div>

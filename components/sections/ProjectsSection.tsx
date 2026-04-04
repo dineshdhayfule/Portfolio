@@ -86,7 +86,7 @@ export default function ProjectsSection() {
                         </div>
 
                         <div className="p-0 border-t-0 space-y-4" onClick={() => setSelected(project)}>
-                            <div className="flex items-start justify-between gap-2 mt-4">
+                            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mt-4">
                                 <div>
                                     <h3 className="text-2xl font-black uppercase tracking-tight text-black group-hover:text-neo-accent transition-colors">
                                         {project.title}
