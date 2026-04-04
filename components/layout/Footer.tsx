@@ -13,7 +13,7 @@ export default function Footer() {
           </div>
           <div>
             <h4 className="text-xl font-black uppercase text-black mb-4">Quick Links</h4>
-            <div className="space-y-3">{navItems.map((item) => <a key={item.name} href={item.href} className="inline-block font-bold uppercase border-b-4 border-transparent hover:border-black text-black transition-colors">{item.name}</a>)}</div>
+            <div className="flex flex-col items-start gap-3">{navItems.map((item) => <a key={item.name} href={item.href} className="inline-block font-bold uppercase border-b-4 border-transparent hover:border-black text-black transition-colors">{item.name}</a>)}</div>
           </div>
           <div>
             <h4 className="text-xl font-black uppercase text-black mb-4">Connect</h4>
@@ -25,7 +25,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-12 pt-8 border-t-4 border-black text-center">
-          <p className="text-black font-bold text-sm flex items-center justify-center gap-2 uppercase tracking-wider">© {new Date().getFullYear()} {personalInfo.name}. BUILT WITH <Heart size={16} className="fill-neo-accent stroke-black stroke-[2px]" /> & REBELLION</p>
+          <p className="text-black font-bold text-sm flex items-center justify-center gap-2 uppercase tracking-wider">© {new Date().getFullYear()} {personalInfo.name}. BUILT WITH <Heart size={16} className="fill-neo-accent stroke-black stroke-[2px]" /></p>
         </div>
       </div>
     </footer>
