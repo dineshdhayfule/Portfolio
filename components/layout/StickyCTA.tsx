@@ -14,11 +14,11 @@ export default function StickyCTA() {
   return (
     <AnimatePresence>
       {show && (
-        <motion.button initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }}
+        <motion.button initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0 }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-6 left-6 z-40 w-12 h-12 bg-bg-card hover:bg-bg-card-hover border border-[var(--border)] rounded-full flex items-center justify-center shadow-lg transition-colors"
+          className="fixed bottom-6 left-6 z-40 w-14 h-14 bg-neo-secondary border-4 border-black text-black hover:bg-neo-accent btn-push shadow-neo-sm rounded-none"
           aria-label="Scroll to top">
-          <ArrowUp size={18} className="text-content-secondary" />
+          <ArrowUp size={24} className="stroke-[3px]" />
         </motion.button>
       )}
     </AnimatePresence>

@@ -9,6 +9,7 @@ import { projects } from "@/lib/data"
 import ParallaxSection, { SectionHeader } from "@/components/ui/ParallaxSection"
 import Badge from "@/components/ui/badge"
 import ProjectModal from "@/components/ui/ProjectModal"
+import NeoCard from "@/components/ui/NeoCard"
 
 const filters = ["All", "AI/ML", "Web", "Mobile"]
 
@@ -36,14 +37,14 @@ export default function ProjectsSection() {
                 description="Real-world projects with measurable impact"
             />
 
-            <div className="flex justify-center gap-2 mb-10">
+            <div className="flex justify-center gap-3 mb-12 flex-wrap">
                 {filters.map((f) => (
                     <button
                         key={f}
                         onClick={() => setFilter(f)}
-                        className={`px-4 py-2 rounded-xl text-sm font-medium ui-hover ${filter === f
-                                ? "bg-secondary/14 text-secondary border border-secondary/40"
-                                : "bg-bg-card text-content-secondary border border-[var(--border)] hover:bg-bg-card-hover"
+                        className={`px-6 py-3 border-4 border-black text-sm font-black tracking-widest uppercase transition-all shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 ${filter === f
+                                ? "bg-neo-accent text-white"
+                                : "bg-white text-black hover:bg-neo-secondary"
                             }`}
                     >
                         {f}
@@ -51,19 +52,14 @@ export default function ProjectsSection() {
                 ))}
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-8 md:gap-12">
                 {filtered.map((project, i) => (
-                    <motion.div
+                    <NeoCard
                         key={project.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.45, delay: i * 0.08 }}
-                        whileHover={{ scale: 1.02 }}
-                        onClick={() => setSelected(project)}
-                        className="glass rounded-xl overflow-hidden cursor-pointer group ui-hover"
+                        delay={i * 0.08}
+                        className="cursor-pointer group hover:-rotate-1"
                     >
-                        <div className="relative h-44 overflow-hidden">
+                        <div className="relative h-64 overflow-hidden border-b-4 border-black" onClick={() => setSelected(project)}>
                             <Image
                                 src={project.image}
                                 alt={project.title}
@@ -72,8 +68,8 @@ export default function ProjectsSection() {
                             />
                             <div className="absolute inset-0 bg-black/20" />
                             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors flex items-center justify-center">
-                                <span className="opacity-0 group-hover:opacity-100 transition-opacity text-white text-sm font-medium flex items-center gap-1">
-                                    View Details <ArrowUpRight size={14} />
+                                <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-neo-accent text-white border-4 border-black px-4 py-2 font-black uppercase flex items-center gap-2 shadow-neo-sm">
+                                    View Details <ArrowUpRight size={20} className="stroke-[3px]" />
                                 </span>
                             </div>
 
@@ -81,7 +77,7 @@ export default function ProjectsSection() {
                                 {getProjectBadges(project.id).map((badge) => (
                                     <span
                                         key={badge}
-                                        className="px-2 py-1 text-[11px] font-semibold rounded-full bg-zinc-900/70 border border-zinc-700 text-zinc-100 backdrop-blur"
+                                        className="px-3 py-1 text-xs font-black uppercase tracking-widest bg-neo-secondary border-4 border-black text-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] rotate-2"
                                     >
                                         {badge}
                                     </span>
@@ -89,53 +85,51 @@ export default function ProjectsSection() {
                             </div>
                         </div>
 
-                        <div className="p-5 space-y-4">
-                            <div className="flex items-start justify-between gap-2">
+                        <div className="p-0 border-t-0 space-y-4" onClick={() => setSelected(project)}>
+                            <div className="flex items-start justify-between gap-2 mt-4">
                                 <div>
-                                    <h3 className="text-lg font-semibold text-content-primary group-hover:text-secondary transition-colors">
+                                    <h3 className="text-2xl font-black uppercase tracking-tight text-black group-hover:text-neo-accent transition-colors">
                                         {project.title}
                                     </h3>
-                                    <p className="text-xs text-content-muted">{project.subtitle}</p>
+                                    <p className="text-sm font-bold uppercase tracking-wider text-black/70 bg-white inline-block px-2 -rotate-1 border-2 border-black">{project.subtitle}</p>
                                 </div>
 
-                                <div className="flex gap-1.5">
+                                <div className="flex gap-2">
                                     {project.github && (
                                         <a
                                             href={project.github}
-                                            title={`${project.title} source code`}
-                                            aria-label={`${project.title} source code`}
+                                            title="Source code"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             onClick={(e) => e.stopPropagation()}
-                                            className="p-1.5 rounded-lg hover:bg-bg-card text-content-muted hover:text-secondary transition-colors"
+                                            className="p-2 border-4 border-black bg-white hover:bg-neo-secondary text-black transition-colors shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
                                         >
-                                            <Github size={16} />
+                                            <Github size={20} className="stroke-[3px]" />
                                         </a>
                                     )}
 
                                     {project.live && (
                                         <a
                                             href={project.live}
-                                            title={`${project.title} live demo`}
-                                            aria-label={`${project.title} live demo`}
+                                            title="Live demo"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             onClick={(e) => e.stopPropagation()}
-                                            className="p-1.5 rounded-lg hover:bg-bg-card text-content-muted hover:text-secondary transition-colors"
+                                            className="p-2 border-4 border-black bg-neo-accent text-white hover:bg-white hover:text-black transition-colors shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
                                         >
-                                            <ExternalLink size={16} />
+                                            <ExternalLink size={20} className="stroke-[3px]" />
                                         </a>
                                     )}
                                 </div>
                             </div>
 
-                            <div className="grid gap-2 text-sm">
+                            <div className="grid gap-2 text-sm bg-neo-bg border-4 border-black p-4 rotate-1">
                                 <CaseLine label="Problem" value={project.problem} />
                                 <CaseLine label="Solution" value={project.solution} />
                                 <CaseLine label="Impact" value={project.impact} />
                             </div>
 
-                            <div className="flex flex-wrap gap-1.5">
+                            <div className="flex flex-wrap gap-2 pt-2">
                                 {project.tech.slice(0, 5).map((tech) => (
                                     <Badge key={tech} variant="accent">
                                         {tech}
@@ -146,7 +140,7 @@ export default function ProjectsSection() {
                                 )}
                             </div>
                         </div>
-                    </motion.div>
+                    </NeoCard>
                 ))}
             </div>
 
@@ -157,11 +151,11 @@ export default function ProjectsSection() {
 
 function CaseLine({ label, value }: { label: string; value: string }) {
     return (
-        <div className="flex items-start gap-2 text-content-secondary leading-6">
-            <span className="text-xs font-semibold text-content-muted uppercase tracking-wide w-16">
+        <div className="flex items-start gap-3 leading-6">
+            <span className="text-xs font-black text-black uppercase tracking-wider w-16 mt-1 bg-white border-2 border-black px-1 -rotate-1 text-center shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] shrink-0">
                 {label}
             </span>
-            <span className="flex-1 text-content-primary/90">{value}</span>
+            <span className="flex-1 text-black font-bold uppercase tracking-wide text-sm">{value}</span>
         </div>
     )
 }
