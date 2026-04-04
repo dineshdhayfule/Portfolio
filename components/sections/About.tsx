@@ -26,11 +26,7 @@ export default function About() {
               <p key={i} className="text-black font-bold leading-relaxed mb-4 last:mb-0 text-lg">{p}</p>
             ))}
           </div>
-          <div className="flex flex-wrap gap-3 pt-4 pl-2">
-            {["Java", "Python", "Node.js", "Scikit-learn", "React", "Firebase", "MySQL"].map((s) => (
-              <span key={s} className="px-4 py-2 border-4 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-xs font-black uppercase tracking-widest bg-neo-secondary text-black hover:-translate-y-1 transition-transform cursor-default">{s}</span>
-            ))}
-          </div>
+
         </div>
       </div>
     </ParallaxSection>
