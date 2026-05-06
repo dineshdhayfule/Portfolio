@@ -6,36 +6,36 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Space Grotesk", "sans-serif"],
+        sans: ["Inter", "ui-sans-serif", "system-ui"],
         mono: ["JetBrains Mono", "monospace"],
       },
       colors: {
-        "neo-bg": "#FFFDF5",
-        "neo-text": "#000000",
+        // Neutral system
+        background: "#FFFFFF",
+        surface: "#F8FAFC",
+        foreground: "#0F172A",
+        muted: {
+          DEFAULT: "#6B7280",
+          light: "#9CA3AF",
+        },
+
+        // Accents
+        accent: { DEFAULT: "#2563EB", light: "#3B82F6", soft: "#93C5FD" },
+        accentAlt: "#00C2A8",
+
+        // Legacy compatibility mappings (kept for minimal changes)
         "neo-accent": "#FF6B6B",
         "neo-secondary": "#FFD93D",
         "neo-muted": "#C4B5FD",
 
-        // Legacy compatibility mappings
-        "bg-primary": "#FFFDF5",
-        "bg-secondary": "#FFD93D",
-        "bg-card": "#ffffff",
-        "bg-card-hover": "#fbfcff",
-        secondary: "#FFD93D",
-        accent: { DEFAULT: "#FF6B6B", light: "#FF6B6B", soft: "#FF6B6B", glow: "#FF6B6B" },
-        success: "#22c55e",
-        warning: "#f59e0b",
-        danger: "#ef4444",
-        "content-primary": "#000000",
-        "content-secondary": "#000000",
-        "content-muted": "#000000",
+        success: "#16A34A",
+        warning: "#F59E0B",
+        danger: "#EF4444",
       },
       boxShadow: {
-        'neo-sm': '4px 4px 0px 0px #000',
-        'neo-md': '8px 8px 0px 0px #000',
-        'neo-lg': '12px 12px 0px 0px #000',
-        'neo-xl': '16px 16px 0px 0px #000',
-        'neo-2xl': '20px 20px 0px 0px #000',
+        'soft-sm': '0 1px 2px rgba(2,6,23,0.06)',
+        'soft-md': '0 6px 18px rgba(2,6,23,0.08)',
+        'soft-lg': '0 12px 30px rgba(2,6,23,0.10)',
       },
       animation: {
         'spin-slow': 'spin-slow 10s linear infinite',

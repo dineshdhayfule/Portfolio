@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="antialiased bg-neo-bg text-neo-text font-sans selection:bg-neo-accent selection:text-white overflow-x-hidden">
+      <body className="antialiased bg-white text-foreground font-sans selection:bg-accent selection:text-white overflow-x-hidden">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} forcedTheme="light">
           {children}
         </ThemeProvider>

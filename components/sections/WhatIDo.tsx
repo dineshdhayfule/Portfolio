@@ -15,12 +15,12 @@ export default function WhatIDo() {
         {expertise.map((e, i) => {
           const Icon = icons[i]
           return (
-            <NeoCard key={e.title} delay={i * 0.1} className={`transform ${i % 2 === 0 ? '-rotate-1 hover:-rotate-2' : 'rotate-1 hover:rotate-2'}`}>
-              <div className="w-16 h-16 bg-neo-accent border-4 border-black flex items-center justify-center mb-6 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                <Icon size={32} className="stroke-[3px] text-white" />
+            <NeoCard key={e.title} delay={i * 0.1} className="transform">
+              <div className="w-14 h-14 bg-accent/10 border border-accent/20 rounded-xl flex items-center justify-center mb-6 shadow-soft-sm">
+                <Icon size={28} className="text-accent" />
               </div>
-              <h3 className="text-2xl font-black uppercase text-black mb-3">{e.title}</h3>
-              <p className="text-black font-bold text-sm leading-relaxed mb-6 bg-white shrink">{e.description}</p>
+              <h3 className="text-2xl font-extrabold uppercase text-foreground mb-3">{e.title}</h3>
+              <p className="text-foreground font-medium text-sm leading-relaxed mb-6 shrink">{e.description}</p>
               <div className="flex flex-wrap gap-2">
                 {e.highlights.map((h) => <Badge key={h} variant="accent">{h}</Badge>)}
               </div>

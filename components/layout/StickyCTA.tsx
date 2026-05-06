@@ -16,9 +16,9 @@ export default function StickyCTA() {
       {show && (
         <motion.button initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0 }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-6 left-6 z-40 w-16 h-16 bg-neo-secondary border-4 border-black text-black hover:bg-neo-accent btn-push shadow-neo-sm rounded-full flex items-center justify-center"
+          className="fixed bottom-6 left-6 z-40 w-14 h-14 bg-accent text-white hover:opacity-95 shadow-soft-md rounded-full flex items-center justify-center border border-transparent"
           aria-label="Scroll to top">
-          <ArrowUp size={28} className="stroke-[3px]" />
+          <ArrowUp size={24} />
         </motion.button>
       )}
     </AnimatePresence>
