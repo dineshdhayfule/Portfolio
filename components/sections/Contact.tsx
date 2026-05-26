@@ -1,10 +1,8 @@
 "use client"
 import { useState } from "react"
-import { motion } from "framer-motion"
 import { Send, Github, Linkedin, Mail, MapPin } from "lucide-react"
 import { personalInfo } from "@/lib/data"
-import ParallaxSection, { SectionHeader } from "@/components/ui/ParallaxSection"
-import NeoCard from "@/components/ui/NeoCard"
+import ParallaxSection from "@/components/ui/ParallaxSection"
 import Button from "@/components/ui/button"
 
 export default function Contact() {
@@ -25,43 +23,91 @@ export default function Contact() {
     } catch { setStatus("error") }
   }
 
-  const inputCls = "w-full bg-white border-4 border-black px-4 py-3 text-black font-bold placeholder:text-black/50 focus:outline-none focus:bg-neo-secondary focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all text-sm mb-4"
+  const inputCls = "w-full bg-white border-[4px] border-black px-6 py-4 rounded-xl text-black font-bold placeholder:text-gray-400 focus:outline-none focus:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all text-lg mb-6 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
 
   return (
-    <ParallaxSection id="contact">
-      <SectionHeader title="Get In" highlight="Touch" description="Have a project in mind or want to collaborate? Let's talk." />
-      <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-        <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-          <NeoCard hover={false} className="rotate-1">
-            <form onSubmit={handleSubmit} className="space-y-2">
-              <div><label className="block text-sm font-black uppercase text-black mb-2">Name</label><input type="text" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className={inputCls} placeholder="Your name" /></div>
-              <div><label className="block text-sm font-black uppercase text-black mb-2">Email</label><input type="email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={inputCls} placeholder="your@email.com" /></div>
-              <div><label className="block text-sm font-black uppercase text-black mb-2">Message</label><textarea required rows={4} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className={`${inputCls} resize-none`} placeholder="Tell me about your project..." /></div>
-              <Button type="submit" variant="primary" size="lg" className="w-full rotate-1 !text-black [&_svg]:!text-black" disabled={status === "sending"}><Send size={20} className="stroke-[3px]" /> {status === "sending" ? "Sending..." : "Send Message"}</Button>
-              {status === "success" && <p className="text-black font-black uppercase text-sm text-center bg-neo-success border-4 border-black mt-4 p-2">✓ Message sent! I'll reply soon.</p>}
-              {status === "error" && <p className="text-white font-black uppercase text-sm text-center bg-neo-accent border-4 border-black mt-4 p-2">✗ Failed. Please try again or email me.</p>}
-            </form>
-          </NeoCard>
-        </motion.div>
-        <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="space-y-8 flex flex-col justify-center">
-          <div className="bg-white border-4 border-black p-6 shadow-neo-md -rotate-1">
-            <h3 className="text-3xl font-black uppercase text-black mb-4">Let's build something together</h3>
-            <p className="text-black font-bold leading-relaxed text-lg">I'm open to internships, freelance projects, and full-time opportunities. Whether you have a specific project or just want to connect — I'd love to hear from you.</p>
+    <ParallaxSection id="contact" className="!bg-black text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-b-4 border-white">
+        <div className="mb-16 text-center md:text-left">
+          <h2 className="text-[50px] md:text-[70px] font-black leading-none uppercase text-white inline-block relative">
+            LET'S
+          </h2>
+          <br />
+          <h2 className="text-[50px] md:text-[70px] font-black leading-none uppercase text-transparent [-webkit-text-stroke:2px_black] mt-2 inline-block bg-[#FDB927] px-4 border-4 border-black rotate-[-2deg]">
+            TALK.
+          </h2>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
+          {/* Form Side */}
+          <div className="bg-[#6366F1] border-4 border-black p-6 md:p-10 rounded-[32px] shadow-[12px_12px_0px_0px_rgba(255,255,255,1)]">
+            <div className="bg-white border-4 border-black p-6 md:p-8 rounded-2xl shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+              <h3 className="text-3xl font-black text-black uppercase mb-8">Send a message</h3>
+              <form onSubmit={handleSubmit}>
+                <div>
+                  <label className="block text-sm font-black uppercase text-black mb-2 ml-2">Name</label>
+                  <input type="text" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className={inputCls} placeholder="JOHN DOE" />
+                </div>
+                <div>
+                  <label className="block text-sm font-black uppercase text-black mb-2 ml-2">Email</label>
+                  <input type="email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={inputCls} placeholder="HELLO@EXAMPLE.COM" />
+                </div>
+                <div>
+                  <label className="block text-sm font-black uppercase text-black mb-2 ml-2">Message</label>
+                  <textarea required rows={4} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} className={`${inputCls} resize-none`} placeholder="TELL ME ABOUT YOUR PROJECT..." />
+                </div>
+                
+                <Button type="submit" variant="primary" size="lg" className="w-full text-xl h-[64px] bg-[#2F81F7] border-4 hover:bg-black uppercase font-black" disabled={status === "sending"}>
+                  <Send size={24} strokeWidth={3} className="mr-2" /> 
+                  {status === "sending" ? "SENDING..." : "SEND MESSAGE"}
+                </Button>
+                
+                {status === "success" && (
+                  <div className="mt-6 p-4 bg-[#22c55e] border-4 border-black rounded-xl text-black font-black uppercase text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                    ✓ Message sent successfully!
+                  </div>
+                )}
+                {status === "error" && (
+                  <div className="mt-6 p-4 bg-[#e7000b] border-4 border-black rounded-xl text-white font-black uppercase text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                    ✗ Failed to send. Please email directly.
+                  </div>
+                )}
+              </form>
+            </div>
           </div>
-          <div className="space-y-4">
-            {[
-              { icon: Mail, label: personalInfo.email, href: `mailto:${personalInfo.email}` },
-              { icon: Github, label: "GitHub Profile", href: personalInfo.github },
-              { icon: Linkedin, label: "LinkedIn Profile", href: personalInfo.linkedin },
-              { icon: MapPin, label: personalInfo.location, href: "#" },
-            ].map(({ icon: Icon, label, href }) => (
-              <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer"
-                className="flex items-center gap-4 p-4 min-h-[48px] bg-neo-secondary border-4 border-black text-black font-black uppercase tracking-widest shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 transition-transform cursor-pointer">
-                <Icon size={24} className="stroke-[3px] text-black flex-shrink-0" /> <span className="break-all">{label}</span>
-              </a>
-            ))}
+
+          {/* Info Side */}
+          <div className="flex flex-col justify-center space-y-10">
+            <div>
+              <h3 className="text-4xl font-black text-white uppercase mb-6 leading-tight">
+                Let's build <br /> something <span className="text-[#2F81F7] underline decoration-[6px] underline-offset-8">epic.</span>
+              </h3>
+              <p className="text-xl font-bold text-gray-300 leading-relaxed max-w-lg">
+                I'm open to freelance projects, startup collaborations, and full-time opportunities. Drop a line and let's make it happen.
+              </p>
+            </div>
+            
+            <div className="grid sm:grid-cols-2 gap-6">
+              {[
+                { icon: Mail, label: "Email", value: personalInfo.email, href: `mailto:${personalInfo.email}`, color: "bg-[#2F81F7]" },
+                { icon: Github, label: "GitHub", value: "github.com/dinesh", href: personalInfo.github, color: "bg-black" },
+                { icon: Linkedin, label: "LinkedIn", value: "linkedin.com/in/dinesh", href: personalInfo.linkedin, color: "bg-[#2F81F7]" },
+                { icon: MapPin, label: "Location", value: personalInfo.location, href: "#", color: "bg-[#FDB927]" },
+              ].map(({ icon: Icon, label, value, href, color }) => (
+                <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer"
+                  className="group bg-white border-4 border-black p-5 rounded-2xl shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[10px_10px_0px_0px_rgba(255,255,255,1)] transition-all flex flex-col items-start gap-4 cursor-pointer text-black">
+                  <div className={`w-12 h-12 ${color} border-4 border-black flex items-center justify-center rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group-hover:-rotate-6 transition-transform`}>
+                    <Icon size={24} className="text-white" strokeWidth={3} />
+                  </div>
+                  <div>
+                    <div className="text-sm font-black uppercase text-gray-600 mb-1">{label}</div>
+                    <div className="text-lg font-bold text-black break-all">{value}</div>
+                  </div>
+                </a>
+              ))}
+            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </ParallaxSection>
   )

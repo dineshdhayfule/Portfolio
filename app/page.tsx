@@ -16,5 +16,5 @@ import Achievements from "@/components/sections/Achievements"
 import Contact from "@/components/sections/Contact"
 
 export default function Portfolio() {
-  return (<div className="min-h-screen bg-bg-primary"> <Navbar /> <main> <Hero /> <About /> <WhatIDo /> <ProjectsSection /> <Experience /> <Skills /> <Education /> <Achievements /> <Contact /> </main> <Footer /> <StickyCTA /> </div>)
+  return (<div className="min-h-screen bg-white"> <Navbar /> <main> <Hero /> <About /> <WhatIDo /> <ProjectsSection /> <Experience /> <Skills /> <Achievements /> <Contact /> </main> <Footer /> <StickyCTA /> </div>)
 }

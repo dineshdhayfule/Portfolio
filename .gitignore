@@ -10,6 +10,8 @@
 # production
 /build
 
+/site-prompt-extraction
+p.md
 # debug
 npm-debug.log*
 yarn-debug.log*

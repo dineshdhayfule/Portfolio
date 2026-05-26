@@ -9,8 +9,7 @@ export default function GlassCard({ children, className = "", hover = true, dela
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay }}
-      whileHover={hover ? { scale: 1.02, transition: { duration: 0.2 } } : undefined}
-      className={`glass rounded-xl p-6 ui-hover ${className}`}
+      className={`card-featured p-6 md:p-8 ${hover ? "card-lift" : ""} ${className}`}
     >
       {children}
     </motion.div>

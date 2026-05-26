@@ -1,77 +1,54 @@
 "use client"
 import { motion } from "framer-motion"
-import { Github, Linkedin, Mail, FileText, ArrowDown, MapPin } from "lucide-react"
+import { Github, Linkedin, Mail, FileText, ArrowDown } from "lucide-react"
 import { personalInfo } from "@/lib/data"
-import TypeWriter from "@/components/ui/TypeWriter"
 import Button from "@/components/ui/button"
-import Badge from "@/components/ui/badge"
-
 
 export default function Hero() {
   return (
-    <section id="hero" className="min-h-[90vh] flex items-center justify-center px-4 pt-24 pb-16 relative overflow-hidden bg-halftone">
-      
-      {/* Decorative floaters */}
-      <motion.div initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: "spring", damping: 12, delay: 0.2 }}
-         className="absolute top-32 left-10 hidden lg:flex w-24 h-24 bg-neo-accent border-4 border-black rounded-full shadow-neo-md z-0" />
-      <motion.div initial={{ y: 50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ type: "spring", damping: 12, delay: 0.4 }}
-         className="absolute top-[60%] right-10 lg:right-20 hidden md:flex w-28 h-28 lg:w-32 lg:h-32 bg-neo-secondary border-4 border-black shadow-neo-md rotate-12 z-0 pointer-events-none" />
-
-      <div className="max-w-5xl mx-auto text-center relative z-10 w-full">
-        <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: "spring", damping: 20 }}>
-          <div className="flex justify-center mb-8 rotate-3">
-            <Badge variant="success" className="px-6 py-2 text-sm shadow-neo-md">
-              <span className="w-3 h-3 bg-black rounded-full mr-2 animate-pulse" />
-              {personalInfo.status}
-            </Badge>
-          </div>
+    <section id="hero" className="min-h-screen flex items-center pt-24 pb-8 md:pt-28 md:pb-12 relative overflow-hidden bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-8 md:gap-12 items-center w-full">
+        
+        <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.5, ease: "easeOut" }} className="space-y-6">
           
-          <div className="relative inline-block mb-6 -rotate-1">
-            <h1 className="text-4xl sm:text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none text-black relative z-10 break-words">
-              Dinesh <br className="sm:hidden"/> 
-              <span className="inline-block bg-neo-secondary px-2 border-4 border-black shadow-neo-sm transform rotate-2">Dhayfule</span>
-            </h1>
-            {/* Background text stroke for depth */}
-            <h1 className="text-4xl sm:text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none absolute top-2 left-2 text-transparent text-stroke-black z-0 pointer-events-none break-words">
-              Dinesh <br className="sm:hidden"/> Dhayfule
-            </h1>
-          </div>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black md:leading-[1.15] text-black tracking-tight">
+            I'm <span className="bg-[#2F81F7] text-white px-2 py-1 relative inline-block mx-1 -rotate-1">{personalInfo.name}</span>, a Software Developer from <span className="bg-[#FDB927] text-black px-2 py-1 relative inline-block mx-1 rotate-1">{personalInfo.location}</span>
+          </h1>
           
-          <h2 className="text-xl md:text-2xl font-bold text-black mb-4 uppercase tracking-wider bg-white inline-block px-4 py-2 border-4 border-black shadow-[4px_4px_0px_0px_#000] rotate-1">
+          <p className="text-[#393939] text-base md:text-lg font-bold leading-relaxed max-w-xl">
             {personalInfo.tagline}
-          </h2>
-          
-          <div className="text-xl md:text-3xl text-black font-black mb-4 h-12 uppercase">
-            I BUILD <TypeWriter words={personalInfo.roles} />
-          </div>
-          
-          <p className="text-black font-bold text-sm flex items-center justify-center gap-2 mb-6 w-fit mx-auto bg-neo-muted px-4 py-2 border-4 border-black -rotate-1 shadow-[4px_4px_0px_0px_#000]">
-            <MapPin size={20} className="stroke-[3px]" /> {personalInfo.location}
           </p>
+          
+          <div className="flex flex-col sm:flex-row flex-wrap gap-4 pt-2">
+            <Button href="#contact" variant="primary" size="lg" className="w-full sm:w-auto text-base md:text-lg min-w-[160px] h-[56px] border-[3px]">
+              <Mail className="w-5 h-5" /> Hire Me
+            </Button>
+            <Button href="#projects" variant="outline" size="lg" className="w-full sm:w-auto text-base md:text-lg min-w-[160px] h-[56px] border-[3px] bg-white">
+              <FileText className="w-5 h-5" /> View Projects
+            </Button>
+          </div>
+
+          <div className="flex gap-4 pt-4">
+            {[{ href: personalInfo.github, icon: Github, label: "GitHub" }, { href: personalInfo.linkedin, icon: Linkedin, label: "LinkedIn" }].map(({ href, icon: Icon, label }) => (
+              <a key={href} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" aria-label={label}
+                className="w-14 h-14 flex items-center justify-center rounded-xl border-[3px] border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] text-black transition-all btn-push">
+                <Icon size={24} strokeWidth={2.5} />
+              </a>
+            ))}
+          </div>
+
         </motion.div>
 
-        <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.2, type: "spring" }} className="flex flex-col sm:flex-row gap-4 justify-center mb-8 w-full max-w-md sm:max-w-none mx-auto">
-          <Button href="#contact" variant="primary" size="lg" className="w-full sm:w-auto rotate-1">Hire Me</Button>
-          <Button href="#projects" variant="secondary" size="lg" className="w-full sm:w-auto -rotate-1">View Projects</Button>
-          <Button href={personalInfo.resume} variant="outline" size="lg" className="w-full sm:w-auto"><FileText size={20} className="stroke-[3px]" /> Resume</Button>
-        </motion.div>
-
-        <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.4, type: "spring" }} className="flex justify-center gap-6 mb-10 w-full relative z-10">
-          {[{ href: personalInfo.github, icon: Github, label: "GitHub", rotate: "rotate-3", color: "bg-neo-secondary" }, { href: personalInfo.linkedin, icon: Linkedin, label: "LinkedIn", rotate: "-rotate-2", color: "bg-neo-accent" }, { href: `mailto:${personalInfo.email}`, icon: Mail, label: "Email", rotate: "rotate-1", color: "bg-neo-muted" }].map(({ href, icon: Icon, label, rotate, color }) => (
-            <motion.a key={href} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" aria-label={label}
-              className={`p-4 rounded-none border-4 border-black text-black hover:opacity-90 btn-push ${rotate} ${color} shadow-neo-sm`}>
-              <Icon size={24} className="stroke-[3px]" />
-            </motion.a>
-          ))}
-        </motion.div>
-
-
-
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }} className="mt-16 flex justify-center">
-          <div className="w-16 h-16 bg-white border-4 border-black rounded-full shadow-neo-sm flex items-center justify-center animate-bounce">
-            <ArrowDown className="text-black stroke-[3px]" size={32} />
+        <motion.div initial={{ x: 20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }} className="flex justify-center lg:justify-end mt-8 lg:mt-0">
+          <div className="relative w-full max-w-[280px] lg:max-w-[340px] aspect-square bg-[#FDB927] border-[4px] md:border-[6px] border-black rounded-[32px] overflow-hidden shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+            <img src="/my-pic.png" alt={personalInfo.name} className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+            {/* Fallback if avatar doesn't exist */}
+            <div className="absolute inset-0 flex items-center justify-center -z-10">
+              <span className="text-[100px] md:text-[120px] font-black text-black opacity-20">{personalInfo.name.charAt(0)}</span>
+            </div>
           </div>
         </motion.div>
+
       </div>
     </section>
   )

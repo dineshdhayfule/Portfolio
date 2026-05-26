@@ -21,8 +21,8 @@ export default function AnimatedCounter({ end, suffix = "", duration = 2, label 
 
   return (
     <div ref={ref} className="text-center">
-      <div className="text-3xl md:text-4xl font-bold font-mono text-accent-light">{count}{suffix}</div>
-      <div className="text-sm text-content-muted mt-1">{label}</div>
+      <div className="text-4xl md:text-5xl font-bold font-mono text-black dark:text-white tracking-tight">{count}{suffix}</div>
+      <div className="text-sm font-semibold text-[#717171] mt-2 uppercase tracking-wider">{label}</div>
     </div>
   )
 }

@@ -20,5 +20,5 @@ export default function TypeWriter({ words, typingSpeed = 80, deletingSpeed = 50
     return () => clearTimeout(timeout)
   }, [text, isDeleting, wordIndex, words, typingSpeed, deletingSpeed, pauseTime])
 
-  return <span className="text-accent-light">{text}<span className="animate-pulse ml-0.5 text-accent">|</span></span>
+  return <span className="text-[var(--accent)]">{text}<span className="animate-pulse ml-0.5 text-[var(--accent)]">|</span></span>
 }

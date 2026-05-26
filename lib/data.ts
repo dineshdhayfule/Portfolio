@@ -149,7 +149,7 @@ export const experience = [
 ]
 
 export const education = [
-  { degree: "B.Tech in Computer Science & Engineering", institution: "NK Orchid College of Engineering and Technology", period: "2023 – 2026", status: "Pursuing" as const, grade: "CGPA: 7.4" },
+  { degree: "B.Tech in Computer Science & Engineering", institution: "NK Orchid College of Engineering and Technology", period: "2023 – 2026", status: "Completed" as const, grade: "CGPA: 7.4" },
   { degree: "Diploma in Information Technology", institution: "Government Polytechnic Solapur", period: "2020 – 2023", status: "Completed" as const, grade: "87.69%" },
   { degree: "Secondary School Certificate (SSC)", institution: "SVCS High School, Solapur", period: "2019 – 2020", status: "Completed" as const, grade: "85.60%" },
 ]

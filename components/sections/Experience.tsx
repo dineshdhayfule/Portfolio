@@ -1,56 +1,100 @@
 "use client"
-import { motion } from "framer-motion"
-import { Briefcase, GraduationCap, Calendar, ChevronRight } from "lucide-react"
+import { Briefcase, GraduationCap, ArrowRight } from "lucide-react"
 import { experience, education } from "@/lib/data"
-import ParallaxSection, { SectionHeader } from "@/components/ui/ParallaxSection"
-import Badge from "@/components/ui/badge"
+import ParallaxSection from "@/components/ui/ParallaxSection"
 
 export default function Experience() {
   return (
-    <ParallaxSection id="experience">
-      <SectionHeader title="Experience &" highlight="Education" description="My professional journey and academic background" />
-      <div className="grid md:grid-cols-2 gap-8">
-        {/* Experience */}
-        <div>
-          <h3 className="text-3xl font-black uppercase text-black mx-auto shrink mb-8 flex items-center justify-center gap-4 bg-white border-4 border-black p-4 shadow-[4px_4px_0px_0px_#000] rotate-1 w-fit"><Briefcase size={32} className="stroke-[3px]" /> Work Experience</h3>
-          <div className="space-y-8">
-            {experience.map((exp, i) => (
-              <motion.div key={exp.role} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
-                <div className="bg-white border-4 border-black p-6 shadow-neo-md rotate-1 hover:-rotate-1 transition-transform cursor-pointer">
-                  <div className="flex flex-col sm:flex-row items-start justify-between mb-4 gap-4">
-                    <div><h4 className="font-black text-xl uppercase text-black">{exp.role}</h4><p className="text-black font-bold uppercase tracking-wider bg-neo-secondary inline-block px-2 border-2 border-black mt-1">{exp.company}</p></div>
-                    <Badge variant={exp.type === "internship" ? "accent" : "default"}>{exp.type === "internship" ? "Internship" : "Training"}</Badge>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-black mb-4"><span className="flex items-center gap-2"><Calendar size={16} /> {exp.period}</span><span>· {exp.duration}</span></div>
-                  <p className="text-black font-bold mb-4">{exp.description}</p>
-                  <ul className="space-y-2">{exp.highlights.map((h) => <li key={h} className="text-black font-bold text-sm flex items-start gap-2"><ChevronRight size={20} className="text-black stroke-[3px] mt-0.5 flex-shrink-0" />{h}</li>)}</ul>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+    <ParallaxSection id="experience" className="!bg-black text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-b-4 border-white">
+        <div className="mb-16">
+          <h2 className="text-[50px] md:text-[70px] font-black leading-none uppercase text-white inline-block relative">
+            MY
+            <span className="absolute -bottom-4 left-0 w-full h-2 bg-white"></span>
+          </h2>
+          <h2 className="text-[50px] md:text-[70px] font-black leading-none uppercase text-transparent [-webkit-text-stroke:2px_white] mt-2">
+            JOURNEY
+          </h2>
         </div>
-        {/* Education */}
-        <div>
-          <h3 className="text-3xl font-black uppercase text-black mx-auto shrink mb-8 flex items-center justify-center gap-4 bg-white border-4 border-black p-4 shadow-[4px_4px_0px_0px_#000] -rotate-1 w-fit"><GraduationCap size={32} className="stroke-[3px]" /> Education</h3>
-          <div className="relative">
-            <div className="absolute left-4 top-2 bottom-0 w-1 bg-black hidden md:block" />
-            <div className="space-y-8">
-              {education.map((edu, i) => (
-                <motion.div key={edu.degree} initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                  className="relative md:pl-12">
-                  <div className="absolute left-[10px] top-6 w-4 h-4 bg-neo-accent border-4 border-black hidden md:block rotate-45" />
-                  <div className="bg-neo-bg border-4 border-black p-6 shadow-neo-md -rotate-1 hover:rotate-1 transition-transform">
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-3 gap-2">
-                      <h4 className="font-black text-xl uppercase text-black">{edu.degree}</h4>
-                      <Badge variant={edu.status === "Pursuing" ? "success" : "default"}>{edu.status}</Badge>
+
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
+          {/* Experience Timeline */}
+          <div>
+            <div className="flex items-center gap-4 mb-10 bg-[#2F81F7] border-4 border-white p-4 shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] w-fit rotate-[-2deg]">
+              <Briefcase size={32} className="text-white" strokeWidth={3} />
+              <h3 className="text-3xl font-black text-white uppercase tracking-tight">Experience</h3>
+            </div>
+            
+            <div className="relative border-l-[6px] border-white ml-6 pl-10 space-y-12 pb-8">
+              {experience.map((exp, i) => (
+                <div key={exp.role} className="relative group">
+                  <div className="absolute -left-[54px] top-4 w-6 h-6 bg-[#2F81F7] border-[4px] border-white rounded-full shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] group-hover:scale-125 transition-transform" />
+                  
+                  <div className="bg-white border-4 border-white p-6 md:p-8 rounded-2xl shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[10px_10px_0px_0px_rgba(255,255,255,1)] transition-all duration-200">
+                    <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
+                      <div>
+                        <h4 className="font-black text-2xl text-black uppercase">{exp.role}</h4>
+                        <p className="text-xl font-bold text-[#2F81F7] mt-1">{exp.company}</p>
+                      </div>
+                      <div className="flex flex-col items-start md:items-end gap-2 shrink-0">
+                        <span className="px-3 py-1 bg-[#FDB927] border-[3px] border-black text-black text-sm font-black uppercase rounded-full shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                          {exp.period}
+                        </span>
+                        <span className="text-sm font-bold text-gray-500 uppercase">{exp.duration}</span>
+                      </div>
                     </div>
-                    <p className="text-black font-bold uppercase tracking-wider bg-neo-secondary inline-block px-2 border-2 border-black mb-3">{edu.institution}</p>
-                    <div className="flex flex-wrap items-center gap-3 text-sm font-bold uppercase tracking-widest text-black">
-                      <span className="flex items-center gap-2"><Calendar size={16} /> {edu.period}</span>
-                      {edu.grade && <span className="bg-white border-2 border-black px-2 mt-1 sm:mt-0">Grade: {edu.grade}</span>}
+                    
+                    <p className="text-lg font-medium text-black mb-6">{exp.description}</p>
+                    
+                    <div className="space-y-3">
+                      {exp.highlights.map((h, idx) => (
+                        <div key={idx} className="flex items-start gap-3">
+                          <ArrowRight size={20} className="text-[#2F81F7] shrink-0 mt-1" strokeWidth={3} />
+                          <p className="text-base font-bold text-gray-800">{h}</p>
+                        </div>
+                      ))}
                     </div>
                   </div>
-                </motion.div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Education Timeline */}
+          <div>
+            <div className="flex items-center gap-4 mb-10 bg-[#2F81F7] border-4 border-white p-4 shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] w-fit rotate-[2deg]">
+              <GraduationCap size={32} className="text-white" strokeWidth={3} />
+              <h3 className="text-3xl font-black text-white uppercase tracking-tight">Education</h3>
+            </div>
+            
+            <div className="relative border-l-[6px] border-white ml-6 pl-10 space-y-12 pb-8">
+              {education.map((edu, i) => (
+                <div key={edu.degree} className="relative group">
+                  <div className="absolute -left-[54px] top-4 w-6 h-6 bg-[#6366F1] border-[4px] border-white rounded-full shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] group-hover:scale-125 transition-transform" />
+                  
+                  <div className="bg-white border-4 border-white p-6 md:p-8 rounded-2xl shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[10px_10px_0px_0px_rgba(255,255,255,1)] transition-all duration-200">
+                    <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-4">
+                      <div>
+                        <h4 className="font-black text-2xl text-black uppercase leading-tight">{edu.degree}</h4>
+                        <p className="text-lg font-bold text-[#6366F1] mt-2">{edu.institution}</p>
+                      </div>
+                      <span className={`px-3 py-1 border-[3px] border-black text-black text-sm font-black uppercase rounded-full shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] h-fit ${edu.status === 'Pursuing' ? 'bg-[#22c55e]' : 'bg-[#F3F3F3]'}`}>
+                        {edu.status}
+                      </span>
+                    </div>
+                    
+                    <div className="flex flex-wrap items-center gap-4 mt-6 pt-6 border-t-4 border-black border-dashed">
+                      <div className="flex items-center gap-2 bg-[#F3F3F3] px-3 py-1.5 border-[2px] border-black text-black text-sm font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+                        {edu.period}
+                      </div>
+                      {edu.grade && (
+                        <div className="flex items-center gap-2 bg-[#FDB927] px-3 py-1.5 border-[2px] border-black text-black text-sm font-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] uppercase">
+                          Grade: {edu.grade}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
