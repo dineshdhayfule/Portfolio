@@ -9,7 +9,7 @@ export default function ParallaxSection({ children, id, className = "", speed = 
   const ref = useRef<HTMLDivElement>(null)
   
   return (
-    <section ref={ref} id={id} className={`relative py-20 md:py-24 overflow-hidden ${alternate ? "bg-[#F3F3F3]" : "bg-white"} ${className}`}>
+    <section ref={ref} id={id} className={`relative py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden ${alternate ? "bg-[#F3F3F3]" : "bg-white"} ${className}`}>
       <motion.div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {children}
       </motion.div>
