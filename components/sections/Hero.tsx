@@ -1,6 +1,6 @@
 "use client"
 import { motion } from "framer-motion"
-import { Github, Linkedin, Mail, FileText, ArrowDown } from "lucide-react"
+import { Mail, FileText } from "lucide-react"
 import { personalInfo } from "@/lib/data"
 import Button from "@/components/ui/button"
 
@@ -28,14 +28,7 @@ export default function Hero() {
             </Button>
           </div>
 
-          <div className="flex gap-3 sm:gap-4 pt-4">
-            {[{ href: personalInfo.github, icon: Github, label: "GitHub" }, { href: personalInfo.linkedin, icon: Linkedin, label: "LinkedIn" }].map(({ href, icon: Icon, label }) => (
-              <a key={href} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" aria-label={label}
-                className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-xl border-[3px] border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] text-black transition-all btn-push">
-                <Icon size={22} strokeWidth={2.5} />
-              </a>
-            ))}
-          </div>
+          {/* Social icons removed per request */}
 
         </motion.div>
 
