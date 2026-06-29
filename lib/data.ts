@@ -12,7 +12,7 @@ export const personalInfo = {
   email: "dineshdhayfule@gmail.com",
   github: "https://github.com/dineshdhayfule",
   linkedin: "https://www.linkedin.com/in/dinesh-dhayfule/",
-  resume: "https://drive.google.com/file/d/1uh1i0jJzYuCpWWXz3RTcR1LLXpvbzXKX/view",
+  resume: "https://drive.google.com/file/d/1n6POWFzfVWYo4juQLckaF10F2c_nDkoy/view",
   location: "Solapur, India",
   status: "Open to Work — actively looking for Software Developer roles",
 }
